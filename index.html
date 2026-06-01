@@ -9,834 +9,131 @@
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779549617/Sello_de_agua_marron_cxoage.png">
   <style>
     :root {
-      --cream: #F7F4EF;
-      --warm: #EDE8DF;
-      --sand: #C8BAA3;
-      --dark: #2A2420;
-      --mid: #6B5E52;
-      --accent: #8B6F5E;
-      --light-text: #A09080;
-      --shadow: rgba(42, 36, 32, 0.04);
-      --shadow-hover: rgba(42, 36, 32, 0.08);
-
-      /* Layout tokens */
-      --page-max: 1200px;
-      --content-max: 800px;
-      --sidebar-w: 280px;
-      --gap: 24px;
+      --cream: #F7F4EF; --warm: #EDE8DF; --sand: #C8BAA3;
+      --dark: #2A2420; --mid: #6B5E52; --accent: #8B6F5E;
+      --light-text: #A09080; --shadow: rgba(42, 36, 32, 0.04);
+      --page-max: 1200px; --content-max: 800px; --sidebar-w: 280px; --gap: 24px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ════════════════════════════════
-       LAYOUT SHELL
-    ════════════════════════════════ */
-    #app {
-      width: 100%;
-      min-height: 100vh;
-    }
-
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    #app { width: 100%; min-height: 100vh; }
     .page { display: none; }
     .page.active { display: block; }
 
-    /* ════════════════════════════════
-       INDEX PAGE
-    ════════════════════════════════ */
-    #page-index {
-      background: var(--cream);
-      min-height: 100vh;
-    }
+    #page-index { background: var(--cream); min-height: 100vh; }
+    .index-header { text-align: center; padding: 60px 24px 24px; background: #fff; border-bottom: 1px solid rgba(200, 186, 163, 0.3); }
+    .brand-script { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(36px, 5vw, 54px); color: var(--dark); line-height: 1.1; margin-bottom: 6px; }
+    .brand-sub { font-size: 9.5px; letter-spacing: 5px; text-transform: uppercase; color: var(--light-text); font-weight: 500; }
+    .divider-line { width: 35px; height: 1px; background: var(--sand); margin: 14px auto; }
 
-    .index-header {
-      text-align: center;
-      padding: 60px 24px 44px;
-      background: #fff;
-      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
-    }
+    .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: var(--page-max); margin: 0 auto; border-top: 1px solid rgba(200, 186, 163, 0.4); }
+    @media (min-width: 540px) { .index-grid { grid-template-columns: repeat(5, 1fr); } }
 
-    .brand-script {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(36px, 5vw, 54px);
-      color: var(--dark);
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .brand-sub {
-      font-size: 9.5px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--light-text);
-      font-weight: 500;
-    }
-
-    .divider-line {
-      width: 35px;
-      height: 1px;
-      background: var(--sand);
-      margin: 14px auto;
-    }
-
-    /* Grid adaptable: 3 col móvil → 5 col tablet → grilla más amplia desktop */
-    .index-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(200, 186, 163, 0.4);
-      max-width: var(--page-max);
-      margin: 0 auto;
-      border-top: 1px solid rgba(200, 186, 163, 0.4);
-    }
-
-    @media (min-width: 540px) {
-      .index-grid { grid-template-columns: repeat(5, 1fr); }
-    }
-
-    @media (min-width: 900px) {
-      .index-grid { grid-template-columns: repeat(5, 1fr); }
-    }
-
-    .icon-btn {
-      background: #fff;
-      border: none;
-      cursor: pointer;
-      padding: 28px 10px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      color: var(--dark);
-      width: 100%;
-    }
-
+    .icon-btn { background: #fff; border: none; border-right: 1px solid rgba(200, 186, 163, 0.4); border-bottom: 1px solid rgba(200, 186, 163, 0.4); cursor: pointer; padding: 28px 10px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; transition: all 0.25s ease; text-decoration: none; color: var(--dark); width: 100%; }
     .icon-btn:hover { background: var(--warm); }
-
-    .icon-btn .icon-wrap {
-      width: 52px;
-      height: 52px;
-      border: 1px solid rgba(200, 186, 163, 0.6);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-      background: var(--cream);
-    }
-
-    .icon-btn:hover .icon-wrap {
-      background: #fff;
-      border-color: var(--accent);
-      transform: scale(1.05);
-    }
-
+    .icon-btn .icon-wrap { width: 52px; height: 52px; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; background: var(--cream); }
+    .icon-btn:hover .icon-wrap { background: #fff; border-color: var(--accent); transform: scale(1.05); }
     .icon-btn i { font-size: 22px; color: var(--accent); }
+    .icon-btn span { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--mid); font-weight: 500; text-align: center; line-height: 1.3; }
+    .index-footer { text-align: center; padding: 36px 20px; font-size: 10px; color: var(--light-text); letter-spacing: 3px; text-transform: uppercase; font-weight: 500; max-width: var(--page-max); margin: 0 auto; }
 
-    .icon-btn span {
-      font-size: 10px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--mid);
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.3;
-    }
-
-    .index-footer {
-      text-align: center;
-      padding: 36px 20px;
-      font-size: 10px;
-      color: var(--light-text);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 500;
-      max-width: var(--page-max);
-      margin: 0 auto;
-    }
-
-    /* ════════════════════════════════
-       INNER PAGES — SHELL
-    ════════════════════════════════ */
-    .inner-page {
-      background: var(--cream);
-      min-height: 100vh;
-    }
-
-    /* Topbar sticky */
-    .page-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px clamp(16px, 4vw, 48px);
-      background: #fff;
-      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .back-btn {
-      background: none;
-      border: 1px solid rgba(200, 186, 163, 0.6);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--mid);
-      cursor: pointer;
-      font-family: 'Jost', sans-serif;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .back-btn:hover {
-      background: var(--dark);
-      color: #fff;
-      border-color: var(--dark);
-    }
-
-    .page-title-bar {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--dark);
-    }
-
-    .page-num {
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: var(--light-text);
-      font-weight: 500;
-    }
-
-    /* Hero */
-    .page-hero {
-      background: linear-gradient(180deg, #fff 0%, var(--warm) 100%);
-      padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 48px) clamp(24px, 4vw, 48px);
-      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
-      text-align: center;
-    }
-
-    .page-hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(30px, 4vw, 48px);
-      color: var(--dark);
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .page-hero .hero-sub {
-      font-size: 10.5px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--light-text);
-      font-weight: 500;
-    }
-
-    /* ════════════════════════════════
-       BODY LAYOUT — 1 o 2 columnas
-    ════════════════════════════════ */
-    .page-body {
-      padding: clamp(24px, 4vw, 40px) clamp(24px, 6vw, 64px);
-      max-width: var(--page-max);
-      margin: 0 auto;
-    }
-
-    /* En pantallas anchas las secciones con múltiples cards se muestran en 2 col */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    @media (min-width: 700px) {
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (min-width: 1000px) {
-      .cards-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ════════════════════════════════
-       CARDS GENÉRICAS
-    ════════════════════════════════ */
-    .content-card {
-      background: #fff;
-      border: 1px solid rgba(200, 186, 163, 0.25);
-      border-radius: 12px;
-      padding: 24px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px var(--shadow);
-    }
-
-    .content-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--cream);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .inner-page { background: var(--cream); min-height: 100vh; }
+    .page-topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px clamp(16px, 4vw, 48px); background: #fff; border-bottom: 1px solid rgba(200, 186, 163, 0.3); position: sticky; top: 0; z-index: 100; }
+    .back-btn { background: none; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 20px; padding: 6px 16px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mid); cursor: pointer; font-family: 'Jost', sans-serif; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; }
+    .back-btn:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .page-title-bar { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--dark); }
+    .page-num { font-size: 10px; letter-spacing: 1px; color: var(--light-text); font-weight: 500; }
+    .page-hero { background: linear-gradient(180deg, #fff 0%, var(--warm) 100%); padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 48px) clamp(24px, 4vw, 48px); border-bottom: 1px solid rgba(200, 186, 163, 0.3); text-align: center; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(30px, 4vw, 48px); color: var(--dark); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .page-hero .hero-sub { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--light-text); font-weight: 500; }
+    .page-body { padding: clamp(24px, 4vw, 40px) clamp(24px, 6vw, 64px); max-width: var(--page-max); margin: 0 auto; }
+    .cards-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 700px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
+    .content-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 12px; padding: 24px 20px; margin-bottom: 20px; box-shadow: 0 4px 12px var(--shadow); }
+    .content-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cream); display: flex; align-items: center; gap: 10px; }
     .content-card h3 i { font-size: 20px; color: var(--accent); }
-
-    .content-card p {
-      font-size: 13.5px;
-      line-height: 1.7;
-      color: var(--mid);
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--cream);
-      font-size: 13.5px;
-    }
-
+    .content-card p { font-size: 13.5px; line-height: 1.7; color: var(--mid); }
+    .info-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--cream); font-size: 13.5px; }
     .info-row:last-child { border-bottom: none; }
-
-    .info-row i {
-      font-size: 18px;
-      color: var(--accent);
-      width: 24px;
-      height: 24px;
-      background: var(--cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .info-row strong {
-      color: var(--dark);
-      font-weight: 500;
-      min-width: 105px;
-      font-size: 11.5px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
+    .info-row i { font-size: 18px; color: var(--accent); width: 24px; height: 24px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-row strong { color: var(--dark); font-weight: 500; min-width: 105px; font-size: 11.5px; letter-spacing: 0.5px; text-transform: uppercase; }
     .info-row span { color: var(--mid); flex: 1; }
-
-    .highlight-box {
-      background: var(--warm);
-      border-left: 3px solid var(--accent);
-      padding: 16px 18px;
-      margin-bottom: 20px;
-      border-radius: 0 10px 10px 0;
-    }
-
-    .highlight-box p {
-      font-size: 13.5px;
-      color: var(--dark);
-      line-height: 1.7;
-      font-style: italic;
-    }
-
-    /* ════════════════════════════════
-       WIFI
-    ════════════════════════════════ */
-    .wifi-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    @media (min-width: 560px) {
-      .wifi-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .wifi-box {
-      background: var(--dark);
-      color: #fff;
-      border-radius: 12px;
-      padding: 24px 22px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(42, 36, 32, 0.15);
-    }
-
-    .wifi-box .wifi-label {
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--sand);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .wifi-box .wifi-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 3vw, 30px);
-      font-style: italic;
-      color: #fff;
-      word-break: break-all;
-    }
-
-    /* ════════════════════════════════
-       REGLAS
-    ════════════════════════════════ */
-    .rules-item {
-      display: flex;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--cream);
-      align-items: flex-start;
-    }
+    .highlight-box { background: var(--warm); border-left: 3px solid var(--accent); padding: 16px 18px; margin-bottom: 20px; border-radius: 0 10px 10px 0; }
+    .highlight-box p { font-size: 13.5px; color: var(--dark); line-height: 1.7; font-style: italic; }
+    .wifi-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+    @media (min-width: 560px) { .wifi-grid { grid-template-columns: 1fr 1fr; } }
+    .wifi-box { background: var(--dark); color: #fff; border-radius: 12px; padding: 24px 22px; text-align: center; box-shadow: 0 4px 15px rgba(42, 36, 32, 0.15); }
+    .wifi-box .wifi-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; font-weight: 600; }
+    .wifi-box .wifi-value { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 30px); font-style: italic; color: #fff; word-break: break-all; }
+    .rules-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--cream); align-items: flex-start; }
     .rules-item:last-child { border-bottom: none; }
-
-    .rule-num {
-      width: 26px;
-      height: 26px;
-      background: var(--cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: var(--accent);
-      flex-shrink: 0;
-      font-weight: 600;
-    }
-
+    .rule-num { width: 26px; height: 26px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--accent); flex-shrink: 0; font-weight: 600; }
     .rule-text { flex: 1; }
-    .rule-text strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 4px;
-    }
+    .rule-text strong { display: block; font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
     .rule-text p { font-size: 12.5px; color: var(--mid); line-height: 1.6; }
-
-    /* ════════════════════════════════
-       AMENITIES
-    ════════════════════════════════ */
-    .amenity-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    @media (min-width: 480px) {
-      .amenity-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    @media (min-width: 800px) {
-      .amenity-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-
-    .amenity-item {
-      background: #fff;
-      border: 1px solid rgba(200, 186, 163, 0.2);
-      border-radius: 10px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--dark);
-      font-weight: 500;
-      box-shadow: 0 2px 6px var(--shadow);
-    }
-
-    .amenity-item i {
-      font-size: 20px;
-      color: var(--accent);
-      background: var(--cream);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* ════════════════════════════════
-       PLACE CARDS — con foto y botón
-    ════════════════════════════════ */
-    .places-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    @media (min-width: 600px) {
-      .places-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (min-width: 1000px) {
-      .places-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .place-card {
-      background: #fff;
-      border: 1px solid rgba(200, 186, 163, 0.25);
-      border-radius: 14px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform 0.2s ease;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
+    .amenity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 480px) { .amenity-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 800px) { .amenity-grid { grid-template-columns: repeat(4, 1fr); } }
+    .amenity-item { background: #fff; border: 1px solid rgba(200, 186, 163, 0.2); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--dark); font-weight: 500; box-shadow: 0 2px 6px var(--shadow); }
+    .amenity-item i { font-size: 20px; color: var(--accent); background: var(--cream); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .places-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 600px) { .places-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .places-grid { grid-template-columns: repeat(3, 1fr); } }
+    .place-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 14px; box-shadow: 0 4px 12px var(--shadow); transition: transform 0.2s ease; overflow: hidden; display: flex; flex-direction: column; }
     .place-card:hover { transform: translateY(-3px); }
-
-    .place-img-wrapper {
-      width: 100%;
-      height: 180px;
-      background: var(--warm);
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .place-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .place-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255, 255, 255, 0.95);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
+    .place-img-wrapper { width: 100%; height: 180px; background: var(--warm); position: relative; flex-shrink: 0; }
+    .place-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .place-badge { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.95); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
     .place-badge i { font-size: 20px; }
-
-    .place-content {
-      padding: 18px 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .place-content strong {
-      font-size: 18px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      color: var(--dark);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .place-content p {
-      font-size: 13.5px;
-      color: var(--mid);
-      line-height: 1.5;
-      margin-bottom: 18px;
-      flex: 1;
-    }
-
-    .place-actions {
-      border-top: 1px solid var(--cream);
-      padding-top: 14px;
-      display: flex;
-    }
-
-    .btn-location {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 12px;
-      background: var(--cream);
-      color: var(--dark);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(200, 186, 163, 0.4);
-    }
-
-    .btn-location:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
+    .place-content { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+    .place-content strong { font-size: 18px; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--dark); display: block; margin-bottom: 6px; }
+    .place-content p { font-size: 13.5px; color: var(--mid); line-height: 1.5; margin-bottom: 18px; flex: 1; }
+    .place-actions { border-top: 1px solid var(--cream); padding-top: 14px; display: flex; }
+    .btn-location { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--cream); color: var(--dark); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 8px; transition: all 0.2s ease; border: 1px solid rgba(200, 186, 163, 0.4); }
+    .btn-location:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
     .btn-location i { font-size: 18px; }
-
-    /* ════════════════════════════════
-       CONTACTO
-    ════════════════════════════════ */
-    .contact-card {
-      background: #fff;
-      border: 1px solid rgba(200, 186, 163, 0.25);
-      border-radius: 16px;
-      padding: clamp(24px, 4vw, 40px) 20px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px var(--shadow);
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .contact-avatar {
-      width: 70px;
-      height: 70px;
-      background: var(--cream);
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--sand);
-    }
+    .contact-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 16px; padding: clamp(24px, 4vw, 40px) 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 15px var(--shadow); max-width: 480px; margin-left: auto; margin-right: auto; }
+    .contact-avatar { width: 70px; height: 70px; background: var(--cream); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--sand); }
     .contact-avatar i { font-size: 28px; color: var(--accent); }
-
-    .contact-card .contact-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-style: italic;
-      color: var(--dark);
-      margin-bottom: 4px;
-    }
-
-    .contact-card .contact-role {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--light-text);
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-
+    .contact-card .contact-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: var(--dark); margin-bottom: 4px; }
+    .contact-card .contact-role { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--light-text); margin-bottom: 20px; font-weight: 500; }
     .contact-links { display: flex; flex-direction: column; gap: 10px; }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px;
-      border: 1px solid rgba(200, 186, 163, 0.6);
-      border-radius: 8px;
-      font-size: 13.5px;
-      color: var(--mid);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    .contact-link:hover {
-      background: var(--cream);
-      color: var(--dark);
-      border-color: var(--accent);
-    }
+    .contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 8px; font-size: 13.5px; color: var(--mid); text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+    .contact-link:hover { background: var(--cream); color: var(--dark); border-color: var(--accent); }
     .contact-link i { font-size: 18px; color: var(--accent); }
-
-    /* ════════════════════════════════
-       CHECKOUT STEPS
-    ════════════════════════════════ */
-    .checkout-step {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--cream);
-    }
+    .checkout-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--cream); }
     .checkout-step:last-child { border-bottom: none; }
-
-    .step-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-    .step-content strong {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--dark);
-      display: block;
-      margin-bottom: 4px;
-    }
+    .step-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .step-content strong { font-size: 14px; font-weight: 500; color: var(--dark); display: block; margin-bottom: 4px; }
     .step-content p { font-size: 12.5px; color: var(--mid); line-height: 1.6; }
-
-    /* ════════════════════════════════
-       DESKTOP: sidebar de navegación
-       (solo en pantallas muy anchas)
-    ════════════════════════════════ */
-    
-    /* Ocultar barra lateral en móviles y tablets */
-    @media (max-width: 1099px) {
-      .sidebar-nav {
-        display: none;
-      }
-    }
-
+    @media (max-width: 1099px) { .sidebar-nav { display: none; } }
     @media (min-width: 1100px) {
-      .inner-layout {
-        display: flex;
-        align-items: flex-start;
-        max-width: var(--page-max);
-        margin: 0 auto;
-      }
-
-      .sidebar-nav {
-        width: var(--sidebar-w);
-        flex-shrink: 0;
-        position: sticky;
-        top: 57px;
-        padding: 28px 20px;
-        border-right: 1px solid rgba(200, 186, 163, 0.25);
-        background: #fff;
-        min-height: calc(100vh - 57px);
-      }
-
-      .sidebar-nav .brand-s {
-        font-family: 'Cormorant Garamond', serif;
-        font-style: italic;
-        font-size: 22px;
-        color: var(--dark);
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--warm);
-        margin-bottom: 14px;
-        display: block;
-      }
-
-      .sidebar-nav a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 10px;
-        border-radius: 8px;
-        color: var(--mid);
-        text-decoration: none;
-        font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        transition: all 0.2s;
-        cursor: pointer;
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: left;
-      }
-
-      .sidebar-nav a:hover, .sidebar-nav a.active-link {
-        background: var(--warm);
-        color: var(--dark);
-      }
-
+      .inner-layout { display: flex; align-items: flex-start; max-width: var(--page-max); margin: 0 auto; }
+      .sidebar-nav { width: var(--sidebar-w); flex-shrink: 0; position: sticky; top: 57px; padding: 28px 20px; border-right: 1px solid rgba(200, 186, 163, 0.25); background: #fff; min-height: calc(100vh - 57px); }
+      .sidebar-nav .brand-s { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--dark); padding-bottom: 14px; border-bottom: 1px solid var(--warm); margin-bottom: 14px; display: block; }
+      .sidebar-nav a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; color: var(--mid); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.2s; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
+      .sidebar-nav a:hover, .sidebar-nav a.active-link { background: var(--warm); color: var(--dark); }
       .sidebar-nav a i { font-size: 16px; color: var(--accent); flex-shrink: 0; }
-
-      .inner-content {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .inner-content .page-topbar {
-        display: none;
-      }
-
-      .inner-content .page-hero {
-        text-align: left;
-        padding-left: clamp(32px, 4vw, 56px);
-        padding-right: clamp(32px, 4vw, 56px);
-      }
-
-      .inner-content .page-body {
-        padding-left: clamp(32px, 4vw, 56px);
-        padding-right: clamp(32px, 4vw, 56px);
-        max-width: none;
-      }
+      .inner-content { flex: 1; min-width: 0; }
+      .inner-content .page-topbar { display: none; }
+      .inner-content .page-hero { text-align: left; padding-left: clamp(32px, 4vw, 56px); padding-right: clamp(32px, 4vw, 56px); }
+      .inner-content .page-body { padding-left: clamp(32px, 4vw, 56px); padding-right: clamp(32px, 4vw, 56px); max-width: none; }
     }
-
-    /* ════════════════════════════════
-       UTILITIES
-    ════════════════════════════════ */
     .mt-20 { margin-top: 20px; }
     .text-center { text-align: center; }
-
-    /* ════ TRANSPORT CONTACT BUTTONS ════ */
-    .transport-card {
-      background: #fff;
-      border: 1px solid rgba(200, 186, 163, 0.25);
-      border-radius: 14px;
-      padding: 22px 20px;
-      box-shadow: 0 4px 12px var(--shadow);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .transport-card-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--cream);
-    }
-    .transport-icon {
-      width: 44px; height: 44px;
-      background: var(--cream);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .transport-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 14px; padding: 22px 20px; box-shadow: 0 4px 12px var(--shadow); display: flex; flex-direction: column; gap: 14px; }
+    .transport-card-header { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--cream); }
+    .transport-icon { width: 44px; height: 44px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .transport-icon i { font-size: 22px; color: var(--accent); }
-    .transport-card-header .t-info strong {
-      display: block; font-size: 15px; font-weight: 600;
-      color: var(--dark); margin-bottom: 2px;
-    }
-    .transport-card-header .t-info span {
-      font-size: 11.5px; color: var(--light-text);
-    }
+    .transport-card-header .t-info strong { display: block; font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+    .transport-card-header .t-info span { font-size: 11.5px; color: var(--light-text); }
     .transport-btns { display: flex; flex-direction: column; gap: 10px; }
-    .btn-call {
-      display: flex; align-items: center; gap: 12px;
-      padding: 13px 16px; border-radius: 10px;
-      text-decoration: none; font-size: 13px; font-weight: 600;
-      transition: all 0.2s ease; font-family: 'Jost', sans-serif;
-    }
+    .btn-call { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s ease; font-family: 'Jost', sans-serif; }
     .btn-call i { font-size: 20px; flex-shrink: 0; }
     .btn-call .btn-label { flex: 1; line-height: 1.3; }
-    .btn-call .btn-sub {
-      display: block; font-size: 10.5px; font-weight: 400;
-      opacity: 0.75; margin-top: 2px;
-    }
+    .btn-call .btn-sub { display: block; font-size: 10.5px; font-weight: 400; opacity: 0.75; margin-top: 2px; }
     .btn-phone { background: var(--dark); color: #fff; }
     .btn-phone:hover { background: #3d3530; }
     .btn-whatsapp { background: #25D366; color: #fff; }
@@ -846,7 +143,6 @@
   </style>
 </head>
 <body>
-
 <div id="app">
   <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;">Guía de bienvenida interactiva para huéspedes de Lake Villa Luxury</h2>
 
@@ -855,73 +151,27 @@
       <div class="brand-script">Guía de Bienvenida</div>
       <div class="divider-line"></div>
       <div class="brand-sub">Descansá · Explorá · Disfrutá</div>
+      <div style="margin-top:12px;">
+        <a href="gastronomia.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:#fff;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:11px 22px;border-radius:20px;transition:background 0.25s ease;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--dark)'">
+          <i class="ti ti-map-2" style="font-size:14px;"></i> Guía Turística
+        </a>
+      </div>
     </div>
-
     <div class="index-grid">
-      <button class="icon-btn" onclick="goTo('welcome')">
-        <div class="icon-wrap"><i class="ti ti-home-heart"></i></div>
-        <span>Bienvenida</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('checkin')">
-        <div class="icon-wrap"><i class="ti ti-key"></i></div>
-        <span>Check-In</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('location')">
-        <div class="icon-wrap"><i class="ti ti-map-pin"></i></div>
-        <span>Ubicación</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('wifi')">
-        <div class="icon-wrap"><i class="ti ti-wifi"></i></div>
-        <span>Wi-Fi</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('rules')">
-        <div class="icon-wrap"><i class="ti ti-gavel"></i></div>
-        <span>Normas</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('transport')">
-        <div class="icon-wrap"><i class="ti ti-car"></i></div>
-        <span>Transporte</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('amenities')">
-        <div class="icon-wrap"><i class="ti ti-pool"></i></div>
-        <span>Servicios</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('activities')">
-        <div class="icon-wrap"><i class="ti ti-compass"></i></div>
-        <span>Actividades</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('localinfo')">
-        <div class="icon-wrap"><i class="ti ti-info-circle"></i></div>
-        <span>Info Local</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('bars')">
-        <div class="icon-wrap"><i class="ti ti-glass-full"></i></div>
-        <span>Bares y Discos</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('restaurants')">
-        <div class="icon-wrap"><i class="ti ti-tools-kitchen-2"></i></div>
-        <span>Restaurantes</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('cafes')">
-        <div class="icon-wrap"><i class="ti ti-coffee"></i></div>
-        <span>Cafés y Té</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('emergency')">
-        <div class="icon-wrap"><i class="ti ti-alert-triangle"></i></div>
-        <span>Urgencias</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('checkout')">
-        <div class="icon-wrap"><i class="ti ti-logout"></i></div>
-        <span>Check-Out</span>
-      </button>
-      <button class="icon-btn" onclick="goTo('contact')">
-        <div class="icon-wrap"><i class="ti ti-id-badge"></i></div>
-        <span>Contacto</span>
-      </button>
+      <button class="icon-btn" onclick="goTo('welcome')"><div class="icon-wrap"><i class="ti ti-home-heart"></i></div><span>Bienvenida</span></button>
+      <button class="icon-btn" onclick="goTo('checkin')"><div class="icon-wrap"><i class="ti ti-key"></i></div><span>Check-In</span></button>
+      <button class="icon-btn" onclick="goTo('location')"><div class="icon-wrap"><i class="ti ti-map-pin"></i></div><span>Ubicación</span></button>
+      <button class="icon-btn" onclick="goTo('wifi')"><div class="icon-wrap"><i class="ti ti-wifi"></i></div><span>Wi-Fi</span></button>
+      <button class="icon-btn" onclick="goTo('rules')"><div class="icon-wrap"><i class="ti ti-gavel"></i></div><span>Normas</span></button>
+      <button class="icon-btn" onclick="goTo('transport')"><div class="icon-wrap"><i class="ti ti-car"></i></div><span>Transporte</span></button>
+      <button class="icon-btn" onclick="goTo('amenities')"><div class="icon-wrap"><i class="ti ti-pool"></i></div><span>Servicios</span></button>
+      <button class="icon-btn" onclick="goTo('localinfo')"><div class="icon-wrap"><i class="ti ti-info-circle"></i></div><span>Info Local</span></button>
+      <button class="icon-btn" onclick="goTo('emergency')"><div class="icon-wrap"><i class="ti ti-alert-triangle"></i></div><span>Urgencias</span></button>
+      <button class="icon-btn" onclick="goTo('checkout')"><div class="icon-wrap"><i class="ti ti-logout"></i></div><span>Check-Out</span></button>
+      <button class="icon-btn" onclick="goTo('contact')"><div class="icon-wrap"><i class="ti ti-id-badge"></i></div><span>Contacto</span></button>
     </div>
     <div class="index-footer">Lake Villa Luxury · Villa Carlos Paz</div>
   </div>
-
   <div id="page-welcome" class="page inner-page">
     <div class="page-topbar">
       <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
@@ -938,11 +188,7 @@
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -991,11 +237,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1039,11 +281,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1085,11 +323,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1134,11 +368,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1180,11 +410,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1282,11 +508,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1346,95 +568,6 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
     </div>
   </div>
 
-  <div id="page-activities" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Actividades</span>
-      <span class="page-num">08 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Aventura y Paisajes</h1>
-          <div class="hero-sub">Nuestras recomendaciones favoritas</div>
-        </div>
-        <div class="page-body">
-          <div class="places-grid">
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773522622/cerro-cruz-carlos-paz_casddc.jpg" alt="Cerro de la Cruz">
-                <div class="place-badge"><i class="ti ti-mountain"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Cerro de la Cruz</strong>
-                <p>Sendero tradicional con vistas panorámicas increíbles de toda la ciudad de Carlos Paz.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Cerro+de+la+Cruz+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773523015/SaveClip.App_650922493_18040217084685729_8966876143117513235_n_joxf8g.webp" alt="Embudo San Roque">
-                <div class="place-badge"><i class="ti ti-ripple"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Embudo | Dique "San Roque"</strong>
-                <p>Un paseo obligado para conocer el icónico embudo y disfrutar de las vistas inmensas al lago.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Embudo+Dique+San+Roque" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773527703/IMG_0454_hm81hj.jpg" alt="Mirador Altas Cumbres">
-                <div class="place-badge"><i class="ti ti-panorama-horizontal"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Mirador Altas Cumbres</strong>
-                <p>El nuevo camino de las Altas Cumbres ofrece paisajes serranos impresionantes y aire puro.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/XuawijgkvvfaBy2U8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773528329/153142168_4003051453047174_4787939569562364772_n_hyqg2i.jpg" alt="Tío Joe Beach">
-                <div class="place-badge"><i class="ti ti-sun"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Tío Joe Beach</strong>
-                <p>Para disfrutar de la costa, la arena y un excelente día de río y sol en la zona de paradores.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Tio+Joe+Beach+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div id="page-localinfo" class="page inner-page">
     <div class="page-topbar">
@@ -1453,10 +586,6 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
@@ -1476,9 +605,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>Bancos y Cajeros Automaticos</strong>
                 <p>Ubicacion de todos los bancos disponibles en zona centrica.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/ar42dmwMQL7sDFmz9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/ar42dmwMQL7sDFmz9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
@@ -1489,9 +616,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>MULTIMARKET VILLA DEL LAGO</strong>
                 <p>Tienda de alimentación.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/DoT9Su5LRZQyYAq59" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/DoT9Su5LRZQyYAq59" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
@@ -1502,9 +627,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>Disco</strong>
                 <p>Supermercados Disco por Villa Carlos Paz.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/gZUacWGkAdYK51Q8A" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/gZUacWGkAdYK51Q8A" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
@@ -1515,9 +638,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>Almacén El Duende</strong>
                 <p>Almacen cerca de la casa con todo lo necesario. Verduras, alcohol, hielo, pan y más.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/PHJJixpJpVuQwvAx7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/PHJJixpJpVuQwvAx7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
@@ -1528,9 +649,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>YPF</strong>
                 <p>Gasolinera.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/TQw6YkyARh46h18c9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/TQw6YkyARh46h18c9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
@@ -1541,371 +660,51 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
               <div class="place-content">
                 <strong>Estación De Servicio VCP</strong>
                 <p>Para situaciones de emergencia, no muy recomendada.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/r68kk5vAqkfEAF6W6" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-bars" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Bares y Discos</span>
-      <span class="page-num">10 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Salidas y Noche</h1>
-          <div class="hero-sub">Para disfrutar la vida nocturna</div>
-        </div>
-        <div class="page-body">
-          <div class="places-grid">
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773336528/SaveClip.App_588470879_1175725868000347_4782751202814961171_n_s2wh9x.jpg" alt="Chill Lake Bar">
-                <div class="place-badge"><i class="ti ti-glass-cocktail"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Chill Lake Bar</strong>
-                <p>Bar con vista al lago, ideal para disfrutar tragos, música y un ambiente súper relajado junto al agua.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Chill+Lake+Bar+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/r68kk5vAqkfEAF6W6" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
               <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779541324/ChatGPT_Image_23_may_2026_10_01_38_a.m_flagjh.png" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
+                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg" alt="Supermercados">
+                <div class="place-badge"><i class="ti ti-building-store"></i></div>
               </div>
               <div class="place-content">
-                <strong>Zebra Club</strong>
-                <p>Zebra Club es un boliche moderno de Villa Carlos Paz, reconocido por su ambientación urbana, luces LED, música y fiestas nocturnas muy concurridas durante fines de semana y temporada turística.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/Kvzpbgg7MvRYMEGc8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <strong>Panadería - La Tasca</strong>
+                <p>Panadería local con productos de calidad.</p>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
               <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779484651/ChatGPT_Image_22_may_2026_06_17_23_p.m_xr51qp.png" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
+                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg" alt="Supermercados">
+                <div class="place-badge"><i class="ti ti-building-store"></i></div>
               </div>
               <div class="place-content">
-                <strong>La Trampera Bar</strong>
-                <p>Bar de cócteles con buena música y comida urbana. Trabajamos por orden de llegada. Abierto a partir de las 20:00 horas</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/e5WDzAXzMvWMpxHEA" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <strong>Hospital De Urgencias Municipal</strong>
+                <p>Panadería local con productos de calidad.</p>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
               <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779541542/keops-1_utulof.webp" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
+                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277240/SaveClip.App_626243409_18106034467700532_2026730720004587937_n_epq5qr.webp" alt="Supermercados">
+                <div class="place-badge"><i class="ti ti-building-store"></i></div>
               </div>
               <div class="place-content">
-                <strong>Keops</strong>
-                <p>Keops Disco es una de las discotecas más icónicas de Carlos Paz y de Córdoba, famosa por su estructura en forma de pirámide, sus grandes eventos, DJs invitados y fiestas masivas durante el verano.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/qpxHznRifduYHaddA" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <strong>Pura Jarana-Fiambreria con de todo!</strong>
+                <p>Fiambreria más cercana.</p>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/6vChLwy2wgZwthQ6A" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
             <div class="place-card">
               <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779542357/579293129_1313411170827513_8690232165578627259_n_sb0fjf.jpg" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
+                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277406/5058baf4-ea33-414a-b916-5a5eeff7ad0b.png" alt="Supermercados">
+                <div class="place-badge"><i class="ti ti-building-store"></i></div>
               </div>
               <div class="place-content">
-                <strong>Khalama Disco</strong>
-                <p>Khalama Disco es un boliche muy popular de Carlos Paz, reconocido por sus fiestas temáticas, ambiente veraniego y noches con mucha música y diversión.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/pQvfAMQNFgdeXrjc7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779542502/574084700_1336487311510028_5313941578065501682_n_ud6luh.jpg" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Molino Rojo</strong>
-                <p>Molino Rojo Disco es un histórico boliche de Villa Carlos Paz, conocido por su ambiente retro, música bailable y noches clásicas de la ciudad. Durante años fue uno de los puntos más emblemáticos de la vida nocturna carlospacense.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/PFrSYhXjbpeEQPWX8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779542797/ARCHI_402462_qrz8r4.jpg" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Zebra Beach</strong>
-                <p>Zebra Beach es un espacio al aire libre ubicado frente al lago en Villa Carlos Paz, conocido por sus sunsets, música y ambiente relajado. Es un lugar muy elegido para disfrutar atardeceres, tragos y encuentros con amigos durante la temporada de verano.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/Sxcrzk7z71zqurWr5" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-restaurants" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Restaurantes</span>
-      <span class="page-num">11 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Dónde Comer</h1>
-          <div class="hero-sub">Gastronomía recomendada</div>
-        </div>
-        <div class="page-body">
-          <div class="places-grid">
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773340518/25042024-_FAB7296-HDR_zi9uvk.jpg" alt="Eleton Restó & Grill">
-                <div class="place-badge"><i class="ti ti-chef-hat"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Eleton Restó & Grill</strong>
-                <p>Menús deliciosos en un entorno natural. Desayunos, almuerzos, cenas y excelentes aperitivos.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Eleton+Resort+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773340834/ARGUMENTO-ph-G-Viramonte-6256-02-22-1024x681_qjsvpw.webp" alt="Argumento Náutico">
-                <div class="place-badge"><i class="ti ti-sailboat"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Argumento Náutico</strong>
-                <p>Propuesta gastronómica exclusiva ubicada dentro del Club Motonáutico de Villa Carlos Paz.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Club+Motonautico+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773341750/LaPulperia_Fachada_hbvwuj.webp" alt="La Pulpería">
-                <div class="place-badge"><i class="ti ti-meat"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>La Pulpería</strong>
-                <p>Comida tradicional argentina y excelente parrilla en un ambiente de estilo rústico y muy cálido.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=La+Pulperia+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779397856/3dee8e8d_orty82.avif" alt="Terra Firma">
-                <div class="place-badge"><i class="ti ti-building-castle"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Terra Firma</strong>
-                <p>Hotel boutique estilo medieval. Su restaurante ofrece parrilla y platos mediterráneos en un lugar único.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Terra+Firma+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773519324/484941290_1061297866041261_1543142263924946322_n_ahw0ip.jpg" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Club Montebello</strong>
-                <p>Resto Bar con la mejor vista de Carlos Paz. Combina excelente gastronomía, tragos y música nocturna.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Club+Montebello+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779486454/ActitudPrado_Fachada_t6jeiz.webp" alt="Club Montebello">
-                <div class="place-badge"><i class="ti ti-music"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Actitud Prado</strong>
-                <p>Se destaca por su ambiente moderno, coctelería, sushi, comida urbana y vista al lago. Mucha gente lo conoce más como un lugar para ir a comer y tomar algo de noche que como un restaurante tradicional.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/Cs3GSEKnNCwoQwLC8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-cafes" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Cafés y Té</span>
-      <span class="page-num">12 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Cafeterías de Especialidad</h1>
-          <div class="hero-sub">Pastelería, brunch y meriendas</div>
-        </div>
-        <div class="page-body">
-          <div class="places-grid">
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773335608/bravo_iparqr.jpg" alt="Bravo Café">
-                <div class="place-badge"><i class="ti ti-coffee"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Bravo Café</strong>
-                <p>Café de especialidad, pastelería artesanal y un ambiente moderno. Ideal meriendas o almuerzos ligeros.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Bravo+Cafe+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773341159/Mr-Coffee_1-cuadrado-1024x1024_fsvnnc.jpg" alt="Mr. Coffee">
-                <div class="place-badge"><i class="ti ti-cup"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Mr. Coffee</strong>
-                <p>Cafetería de especialidad y pastelería de excelencia ("No hacemos café en serie, hacemos café en serio").</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Mr+Coffee+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773522415/Qala-Cafe_2-cuadrado1-1024x613_tjpaq2.jpg" alt="Qala Caffè">
-                <div class="place-badge"><i class="ti ti-bread"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Qala Caffè</strong>
-                <p>Café de especialidad. Destacan fuertemente por su panadería de masa madre y laminados de producción propia.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Qala+Caffe+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773342210/_dsc4516-2_mqgzkm.jpg" alt="Achalay Cafe">
-                <div class="place-badge"><i class="ti ti-mug"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Achalay Cafe</strong>
-                <p>Opciones dulces y saladas en un ambiente muy cálido, ideal para disfrutar un buen desayuno serrano.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Achalay+Cafe+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1773342531/SaveClip.App_543662570_17900640927256390_6356904040429146392_n_uf8jwk.webp" alt="Margarita">
-                <div class="place-badge"><i class="ti ti-cake"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Margarita</strong>
-                <p>Famosa por sus "meriendas gigantes" frente a la costanera. Una de las más visitadas y clásicas de la Villa.</p>
-                <div class="place-actions">
-                  <a href="https://www.google.com/maps/search/?api=1&query=Margarita+Cafe+Carlos+Paz" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779544565/unnamed_6_aezfre.jpg" alt="Margarita">
-                <div class="place-badge"><i class="ti ti-cake"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Cande Pasteleria</strong>
-                <p>Excelente pastelería. Muy bien el café tmb. Elaboración a la vista...
-                    Productos deliciosos, en especial las tortas.</p>
-                <div class="place-actions">
-                  <a href="https://maps.app.goo.gl/TTx7RSVF8WVZUWAr7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a>
-                </div>
+                <strong>FARMACIA VALERIA ASSUSA</strong>
+                <p>Farmacia más cercana.</p>
+                <div class="place-actions"><a href="https://maps.app.goo.gl/qZch6d9c336aMavP8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
               </div>
             </div>
           </div>
@@ -1931,11 +730,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
       </nav>
@@ -1975,11 +770,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
       </nav>
@@ -2021,11 +812,7 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
         <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
         <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
         <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('activities')"><i class="ti ti-compass"></i> Actividades</a>
         <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('bars')"><i class="ti ti-glass-full"></i> Bares y Discos</a>
-        <a onclick="goTo('restaurants')"><i class="ti ti-tools-kitchen-2"></i> Restaurantes</a>
-        <a onclick="goTo('cafes')"><i class="ti ti-coffee"></i> Cafés y Té</a>
         <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
         <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
       </nav>
@@ -2052,6 +839,8 @@ A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha
       </div>
     </div>
   </div>
+
+</div>
 
 </div>
 
