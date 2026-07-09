@@ -1,859 +1,1814 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guía Lake Huespedes</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
-  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779549617/Sello_de_agua_marron_cxoage.png">
+  <link rel="icon" type="image/png"
+    href="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779549617/Sello_de_agua_marron_cxoage.png">
   <style>
     :root {
-      --cream: #F7F4EF; --warm: #EDE8DF; --sand: #C8BAA3;
-      --dark: #2A2420; --mid: #6B5E52; --accent: #8B6F5E;
-      --light-text: #A09080; --shadow: rgba(42, 36, 32, 0.04);
-      --page-max: 1200px; --content-max: 800px; --sidebar-w: 280px; --gap: 24px;
+      --cream: #F7F4EF;
+      --warm: #EDE8DF;
+      --sand: #C8BAA3;
+      --dark: #2A2420;
+      --mid: #6B5E52;
+      --accent: #8B6F5E;
+      --light-text: #A09080;
+      --shadow: rgba(42, 36, 32, 0.04);
+      --page-max: 1200px;
+      --content-max: 800px;
+      --sidebar-w: 280px;
+      --gap: 24px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-    #app { width: 100%; min-height: 100vh; }
-    .page { display: none; }
-    .page.active { display: block; }
 
-    #page-index { background: var(--cream); min-height: 100vh; }
-    .index-header { text-align: center; padding: 60px 24px 24px; background: #fff; border-bottom: 1px solid rgba(200, 186, 163, 0.3); }
-    .brand-script { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(36px, 5vw, 54px); color: var(--dark); line-height: 1.1; margin-bottom: 6px; }
-    .brand-sub { font-size: 9.5px; letter-spacing: 5px; text-transform: uppercase; color: var(--light-text); font-weight: 500; }
-    .divider-line { width: 35px; height: 1px; background: var(--sand); margin: 14px auto; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); max-width: var(--page-max); margin: 0 auto; border-top: 1px solid rgba(200, 186, 163, 0.4); }
-    @media (min-width: 540px) { .index-grid { grid-template-columns: repeat(5, 1fr); } }
+    html {
+      scroll-behavior: smooth;
+    }
 
-    .icon-btn { background: #fff; border: none; border-right: 1px solid rgba(200, 186, 163, 0.4); border-bottom: 1px solid rgba(200, 186, 163, 0.4); cursor: pointer; padding: 28px 10px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; transition: all 0.25s ease; text-decoration: none; color: var(--dark); width: 100%; }
-    .icon-btn:hover { background: var(--warm); }
-    .icon-btn .icon-wrap { width: 52px; height: 52px; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; background: var(--cream); }
-    .icon-btn:hover .icon-wrap { background: #fff; border-color: var(--accent); transform: scale(1.05); }
-    .icon-btn i { font-size: 22px; color: var(--accent); }
-    .icon-btn span { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--mid); font-weight: 500; text-align: center; line-height: 1.3; }
-    .index-footer { text-align: center; padding: 36px 20px; font-size: 10px; color: var(--light-text); letter-spacing: 3px; text-transform: uppercase; font-weight: 500; max-width: var(--page-max); margin: 0 auto; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    .inner-page { background: var(--cream); min-height: 100vh; }
-    .page-topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px clamp(16px, 4vw, 48px); background: #fff; border-bottom: 1px solid rgba(200, 186, 163, 0.3); position: sticky; top: 0; z-index: 100; }
-    .back-btn { background: none; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 20px; padding: 6px 16px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mid); cursor: pointer; font-family: 'Jost', sans-serif; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; }
-    .back-btn:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
-    .page-title-bar { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; font-weight: 400; color: var(--dark); }
-    .page-num { font-size: 10px; letter-spacing: 1px; color: var(--light-text); font-weight: 500; }
-    .page-hero { background: linear-gradient(180deg, #fff 0%, var(--warm) 100%); padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 48px) clamp(24px, 4vw, 48px); border-bottom: 1px solid rgba(200, 186, 163, 0.3); text-align: center; }
-    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(30px, 4vw, 48px); color: var(--dark); margin-bottom: 8px; letter-spacing: 0.5px; }
-    .page-hero .hero-sub { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--light-text); font-weight: 500; }
-    .page-body { padding: clamp(24px, 4vw, 40px) clamp(24px, 6vw, 64px); max-width: var(--page-max); margin: 0 auto; }
-    .cards-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    @media (min-width: 700px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1000px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
-    .content-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 12px; padding: 24px 20px; margin-bottom: 20px; box-shadow: 0 4px 12px var(--shadow); }
-    .content-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cream); display: flex; align-items: center; gap: 10px; }
-    .content-card h3 i { font-size: 20px; color: var(--accent); }
-    .content-card p { font-size: 13.5px; line-height: 1.7; color: var(--mid); }
-    .info-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--cream); font-size: 13.5px; }
-    .info-row:last-child { border-bottom: none; }
-    .info-row i { font-size: 18px; color: var(--accent); width: 24px; height: 24px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .info-row strong { color: var(--dark); font-weight: 500; min-width: 105px; font-size: 11.5px; letter-spacing: 0.5px; text-transform: uppercase; }
-    .info-row span { color: var(--mid); flex: 1; }
-    .highlight-box { background: var(--warm); border-left: 3px solid var(--accent); padding: 16px 18px; margin-bottom: 20px; border-radius: 0 10px 10px 0; }
-    .highlight-box p { font-size: 13.5px; color: var(--dark); line-height: 1.7; font-style: italic; }
-    .wifi-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
-    @media (min-width: 560px) { .wifi-grid { grid-template-columns: 1fr 1fr; } }
-    .wifi-box { background: var(--dark); color: #fff; border-radius: 12px; padding: 24px 22px; text-align: center; box-shadow: 0 4px 15px rgba(42, 36, 32, 0.15); }
-    .wifi-box .wifi-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; font-weight: 600; }
-    .wifi-box .wifi-value { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 30px); font-style: italic; color: #fff; word-break: break-all; }
-    .rules-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--cream); align-items: flex-start; }
-    .rules-item:last-child { border-bottom: none; }
-    .rule-num { width: 26px; height: 26px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--accent); flex-shrink: 0; font-weight: 600; }
-    .rule-text { flex: 1; }
-    .rule-text strong { display: block; font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
-    .rule-text p { font-size: 12.5px; color: var(--mid); line-height: 1.6; }
-    .amenity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    @media (min-width: 480px) { .amenity-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 800px) { .amenity-grid { grid-template-columns: repeat(4, 1fr); } }
-    .amenity-item { background: #fff; border: 1px solid rgba(200, 186, 163, 0.2); border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--dark); font-weight: 500; box-shadow: 0 2px 6px var(--shadow); }
-    .amenity-item i { font-size: 20px; color: var(--accent); background: var(--cream); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .places-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-    @media (min-width: 600px) { .places-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1000px) { .places-grid { grid-template-columns: repeat(3, 1fr); } }
-    .place-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 14px; box-shadow: 0 4px 12px var(--shadow); transition: transform 0.2s ease; overflow: hidden; display: flex; flex-direction: column; }
-    .place-card:hover { transform: translateY(-3px); }
-    .place-img-wrapper { width: 100%; height: 180px; background: var(--warm); position: relative; flex-shrink: 0; }
-    .place-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-    .place-badge { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.95); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .place-badge i { font-size: 20px; }
-    .place-content { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
-    .place-content strong { font-size: 18px; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--dark); display: block; margin-bottom: 6px; }
-    .place-content p { font-size: 13.5px; color: var(--mid); line-height: 1.5; margin-bottom: 18px; flex: 1; }
-    .place-actions { border-top: 1px solid var(--cream); padding-top: 14px; display: flex; }
-    .btn-location { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--cream); color: var(--dark); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 8px; transition: all 0.2s ease; border: 1px solid rgba(200, 186, 163, 0.4); }
-    .btn-location:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-location i { font-size: 18px; }
-    .contact-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 16px; padding: clamp(24px, 4vw, 40px) 20px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 15px var(--shadow); max-width: 480px; margin-left: auto; margin-right: auto; }
-    .contact-avatar { width: 70px; height: 70px; background: var(--cream); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--sand); }
-    .contact-avatar i { font-size: 28px; color: var(--accent); }
-    .contact-card .contact-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: var(--dark); margin-bottom: 4px; }
-    .contact-card .contact-role { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--light-text); margin-bottom: 20px; font-weight: 500; }
-    .contact-links { display: flex; flex-direction: column; gap: 10px; }
-    .contact-link { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; border: 1px solid rgba(200, 186, 163, 0.6); border-radius: 8px; font-size: 13.5px; color: var(--mid); text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
-    .contact-link:hover { background: var(--cream); color: var(--dark); border-color: var(--accent); }
-    .contact-link i { font-size: 18px; color: var(--accent); }
-    .checkout-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--cream); }
-    .checkout-step:last-child { border-bottom: none; }
-    .step-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-    .step-content strong { font-size: 14px; font-weight: 500; color: var(--dark); display: block; margin-bottom: 4px; }
-    .step-content p { font-size: 12.5px; color: var(--mid); line-height: 1.6; }
-    @media (max-width: 1099px) { .sidebar-nav { display: none; } }
+    #app {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    #page-index {
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    .index-header {
+      text-align: center;
+      padding: 60px 24px 24px;
+      background: #fff;
+      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
+    }
+
+    .brand-script {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 54px);
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .brand-sub {
+      font-size: 9.5px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--light-text);
+      font-weight: 500;
+    }
+
+    .divider-line {
+      width: 35px;
+      height: 1px;
+      background: var(--sand);
+      margin: 14px auto;
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: var(--page-max);
+      margin: 0 auto;
+      border-top: 1px solid rgba(200, 186, 163, 0.4);
+    }
+
+    @media (min-width: 540px) {
+      .index-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .icon-btn {
+      background: #fff;
+      border: none;
+      border-right: 1px solid rgba(200, 186, 163, 0.4);
+      border-bottom: 1px solid rgba(200, 186, 163, 0.4);
+      cursor: pointer;
+      padding: 28px 10px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: var(--dark);
+      width: 100%;
+    }
+
+    .icon-btn:hover {
+      background: var(--warm);
+    }
+
+    .icon-btn .icon-wrap {
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(200, 186, 163, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      background: var(--cream);
+    }
+
+    .icon-btn:hover .icon-wrap {
+      background: #fff;
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .icon-btn i {
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .icon-btn span {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .index-footer {
+      text-align: center;
+      padding: 36px 20px;
+      font-size: 10px;
+      color: var(--light-text);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+
+    .inner-page {
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    .page-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(16px, 4vw, 48px);
+      background: #fff;
+      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .back-btn {
+      background: none;
+      border: 1px solid rgba(200, 186, 163, 0.6);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--dark);
+      color: #fff;
+      border-color: var(--dark);
+    }
+
+    .page-title-bar {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--dark);
+    }
+
+    .page-num {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--light-text);
+      font-weight: 500;
+    }
+
+    .page-hero {
+      background: linear-gradient(180deg, #fff 0%, var(--warm) 100%);
+      padding: clamp(32px, 5vw, 64px) clamp(20px, 5vw, 48px) clamp(24px, 4vw, 48px);
+      border-bottom: 1px solid rgba(200, 186, 163, 0.3);
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4vw, 48px);
+      color: var(--dark);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .page-hero .hero-sub {
+      font-size: 10.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--light-text);
+      font-weight: 500;
+    }
+
+    .page-body {
+      padding: clamp(24px, 4vw, 40px) clamp(24px, 6vw, 64px);
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 700px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .content-card {
+      background: #fff;
+      border: 1px solid rgba(200, 186, 163, 0.25);
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .content-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .content-card h3 i {
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .content-card p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--cream);
+      font-size: 13.5px;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row i {
+      font-size: 18px;
+      color: var(--accent);
+      width: 24px;
+      height: 24px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-row strong {
+      color: var(--dark);
+      font-weight: 500;
+      min-width: 105px;
+      font-size: 11.5px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .info-row span {
+      color: var(--mid);
+      flex: 1;
+    }
+
+    .highlight-box {
+      background: var(--warm);
+      border-left: 3px solid var(--accent);
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .highlight-box p {
+      font-size: 13.5px;
+      color: var(--dark);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .wifi-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 560px) {
+      .wifi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .wifi-box {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px 22px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(42, 36, 32, 0.15);
+    }
+
+    .wifi-box .wifi-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .wifi-box .wifi-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-style: italic;
+      color: #fff;
+      word-break: break-all;
+    }
+
+    .rules-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cream);
+      align-items: flex-start;
+    }
+
+    .rules-item:last-child {
+      border-bottom: none;
+    }
+
+    .rule-num {
+      width: 26px;
+      height: 26px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--accent);
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    .rule-text {
+      flex: 1;
+    }
+
+    .rule-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .rule-text p {
+      font-size: 12.5px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .amenity-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 800px) {
+      .amenity-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .amenity-item {
+      background: #fff;
+      border: 1px solid rgba(200, 186, 163, 0.2);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--dark);
+      font-weight: 500;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    .amenity-item i {
+      font-size: 20px;
+      color: var(--accent);
+      background: var(--cream);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .places-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    @media (min-width: 600px) {
+      .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .places-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .place-card {
+      background: #fff;
+      border: 1px solid rgba(200, 186, 163, 0.25);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform 0.2s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .place-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .place-img-wrapper {
+      width: 100%;
+      height: 180px;
+      background: var(--warm);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .place-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .place-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .place-badge i {
+      font-size: 20px;
+    }
+
+    .place-content {
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .place-content strong {
+      font-size: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .place-content p {
+      font-size: 13.5px;
+      color: var(--mid);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .place-actions {
+      border-top: 1px solid var(--cream);
+      padding-top: 14px;
+      display: flex;
+    }
+
+    .btn-location {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(200, 186, 163, 0.4);
+    }
+
+    .btn-location:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-location i {
+      font-size: 18px;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid rgba(200, 186, 163, 0.25);
+      border-radius: 16px;
+      padding: clamp(24px, 4vw, 40px) 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px var(--shadow);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-avatar {
+      width: 70px;
+      height: 70px;
+      background: var(--cream);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--sand);
+    }
+
+    .contact-avatar i {
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    .contact-card .contact-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-style: italic;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .contact-card .contact-role {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light-text);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px;
+      border: 1px solid rgba(200, 186, 163, 0.6);
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--mid);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+      background: var(--cream);
+      color: var(--dark);
+      border-color: var(--accent);
+    }
+
+    .contact-link i {
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .checkout-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    .checkout-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-content strong {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 12.5px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1099px) {
+      .sidebar-nav {
+        display: none;
+      }
+    }
+
     @media (min-width: 1100px) {
-      .inner-layout { display: flex; align-items: flex-start; max-width: var(--page-max); margin: 0 auto; }
-      .sidebar-nav { width: var(--sidebar-w); flex-shrink: 0; position: sticky; top: 57px; padding: 28px 20px; border-right: 1px solid rgba(200, 186, 163, 0.25); background: #fff; min-height: calc(100vh - 57px); }
-      .sidebar-nav .brand-s { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--dark); padding-bottom: 14px; border-bottom: 1px solid var(--warm); margin-bottom: 14px; display: block; }
-      .sidebar-nav a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; color: var(--mid); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.2s; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
-      .sidebar-nav a:hover, .sidebar-nav a.active-link { background: var(--warm); color: var(--dark); }
-      .sidebar-nav a i { font-size: 16px; color: var(--accent); flex-shrink: 0; }
-      .inner-content { flex: 1; min-width: 0; }
-      .inner-content .page-topbar { display: none; }
-      .inner-content .page-hero { text-align: left; padding-left: clamp(32px, 4vw, 56px); padding-right: clamp(32px, 4vw, 56px); }
-      .inner-content .page-body { padding-left: clamp(32px, 4vw, 56px); padding-right: clamp(32px, 4vw, 56px); max-width: none; }
+      .inner-layout {
+        display: flex;
+        align-items: flex-start;
+        max-width: var(--page-max);
+        margin: 0 auto;
+      }
+
+      .sidebar-nav {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        position: sticky;
+        top: 57px;
+        padding: 28px 20px;
+        border-right: 1px solid rgba(200, 186, 163, 0.25);
+        background: #fff;
+        min-height: calc(100vh - 57px);
+      }
+
+      .sidebar-nav .brand-s {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 22px;
+        color: var(--dark);
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--warm);
+        margin-bottom: 14px;
+        display: block;
+      }
+
+      .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        color: var(--mid);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.2s;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active-link {
+        background: var(--warm);
+        color: var(--dark);
+      }
+
+      .sidebar-nav a i {
+        font-size: 16px;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      .inner-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .inner-content .page-topbar {
+        display: none;
+      }
+
+      .inner-content .page-hero {
+        text-align: left;
+        padding-left: clamp(32px, 4vw, 56px);
+        padding-right: clamp(32px, 4vw, 56px);
+      }
+
+      .inner-content .page-body {
+        padding-left: clamp(32px, 4vw, 56px);
+        padding-right: clamp(32px, 4vw, 56px);
+        max-width: none;
+      }
     }
-    .mt-20 { margin-top: 20px; }
-    .text-center { text-align: center; }
-    .transport-card { background: #fff; border: 1px solid rgba(200, 186, 163, 0.25); border-radius: 14px; padding: 22px 20px; box-shadow: 0 4px 12px var(--shadow); display: flex; flex-direction: column; gap: 14px; }
-    .transport-card-header { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--cream); }
-    .transport-icon { width: 44px; height: 44px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .transport-icon i { font-size: 22px; color: var(--accent); }
-    .transport-card-header .t-info strong { display: block; font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
-    .transport-card-header .t-info span { font-size: 11.5px; color: var(--light-text); }
-    .transport-btns { display: flex; flex-direction: column; gap: 10px; }
-    .btn-call { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s ease; font-family: 'Jost', sans-serif; }
-    .btn-call i { font-size: 20px; flex-shrink: 0; }
-    .btn-call .btn-label { flex: 1; line-height: 1.3; }
-    .btn-call .btn-sub { display: block; font-size: 10.5px; font-weight: 400; opacity: 0.75; margin-top: 2px; }
-    .btn-phone { background: var(--dark); color: #fff; }
-    .btn-phone:hover { background: #3d3530; }
-    .btn-whatsapp { background: #25D366; color: #fff; }
-    .btn-whatsapp:hover { background: #1fba59; }
-    .btn-app { background: var(--cream); color: var(--dark); border: 1px solid rgba(200,186,163,0.5); }
-    .btn-app:hover { background: var(--warm); }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .transport-card {
+      background: #fff;
+      border: 1px solid rgba(200, 186, 163, 0.25);
+      border-radius: 14px;
+      padding: 22px 20px;
+      box-shadow: 0 4px 12px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .transport-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    .transport-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .transport-icon i {
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .transport-card-header .t-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .transport-card-header .t-info span {
+      font-size: 11.5px;
+      color: var(--light-text);
+    }
+
+    .transport-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-call {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      font-family: 'Jost', sans-serif;
+    }
+
+    .btn-call i {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .btn-call .btn-label {
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    .btn-call .btn-sub {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 400;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    .btn-phone {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .btn-phone:hover {
+      background: #3d3530;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1fba59;
+    }
+
+    .btn-app {
+      background: var(--cream);
+      color: var(--dark);
+      border: 1px solid rgba(200, 186, 163, 0.5);
+    }
+
+    .btn-app:hover {
+      background: var(--warm);
+    }
   </style>
 </head>
+
 <body>
-<div id="app">
-  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;">Guía de bienvenida interactiva para huéspedes de Lake Villa Luxury</h2>
+  <div id="app">
+    <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;">Guía de bienvenida interactiva para huéspedes de
+      Lake Villa Luxury</h2>
 
-  <div id="page-index" class="page active">
-    <div class="index-header">
-      <div class="brand-script">Guía de Bienvenida</div>
-      <div class="divider-line"></div>
-      <div class="brand-sub">Descansá · Explorá · Disfrutá</div>
-      <div style="margin-top:12px;">
-        <a href="gastronomia.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:#fff;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:11px 22px;border-radius:20px;transition:background 0.25s ease;" onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--dark)'">
-          <i class="ti ti-map-2" style="font-size:14px;"></i> Guía Turística
-        </a>
-      </div>
-    </div>
-    <div class="index-grid">
-      <button class="icon-btn" onclick="goTo('welcome')"><div class="icon-wrap"><i class="ti ti-home-heart"></i></div><span>Bienvenida</span></button>
-      <button class="icon-btn" onclick="goTo('checkin')"><div class="icon-wrap"><i class="ti ti-key"></i></div><span>Check-In</span></button>
-      <button class="icon-btn" onclick="goTo('location')"><div class="icon-wrap"><i class="ti ti-map-pin"></i></div><span>Ubicación</span></button>
-      <button class="icon-btn" onclick="goTo('wifi')"><div class="icon-wrap"><i class="ti ti-wifi"></i></div><span>Wi-Fi</span></button>
-      <button class="icon-btn" onclick="goTo('rules')"><div class="icon-wrap"><i class="ti ti-gavel"></i></div><span>Normas</span></button>
-      <button class="icon-btn" onclick="goTo('transport')"><div class="icon-wrap"><i class="ti ti-car"></i></div><span>Transporte</span></button>
-      <button class="icon-btn" onclick="goTo('amenities')"><div class="icon-wrap"><i class="ti ti-pool"></i></div><span>Servicios</span></button>
-      <button class="icon-btn" onclick="goTo('localinfo')"><div class="icon-wrap"><i class="ti ti-info-circle"></i></div><span>Info Local</span></button>
-      <button class="icon-btn" onclick="goTo('emergency')"><div class="icon-wrap"><i class="ti ti-alert-triangle"></i></div><span>Urgencias</span></button>
-      <button class="icon-btn" onclick="goTo('checkout')"><div class="icon-wrap"><i class="ti ti-logout"></i></div><span>Check-Out</span></button>
-      <button class="icon-btn" onclick="goTo('contact')"><div class="icon-wrap"><i class="ti ti-id-badge"></i></div><span>Contacto</span></button>
-    </div>
-    <div class="index-footer">Lake Villa Luxury · Villa Carlos Paz</div>
-  </div>
-  <div id="page-welcome" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Bienvenida</span>
-      <span class="page-num">01 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav" id="sidebar-welcome">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Bienvenidos</h1>
-          <div class="hero-sub">Tu refugio frente al lago</div>
-        </div>
-        <div class="page-body">
-          <div class="highlight-box">
-            <p>Ubicado en Villa Del Lago en Carlos Paz, Lake Villa ofrece un escape sereno con todas las comodidades que necesitás y una de las mejores vistas al lago de toda la zona.</p>
-          </div>
-          <div class="cards-grid">
-            <div class="content-card">
-              <h3><i class="ti ti-home-villa"></i> Sobre la Residencia</h3>
-              <p>Un espacio diseñado para relajarte y disfrutar. Cuenta con espacios amplios, cochera privada y zonas de relax únicas en el área. Te invitamos a cuidar las instalaciones como si fueran tuyas.</p>
-            </div>
-            <div class="content-card">
-              <h3><i class="ti ti-bed"></i> Habitaciones y Espacios</h3>
-              <p>La casa cuenta con cocina y horno eléctricos, moderna heladera Samsung, amplio living comedor, Smart TV de 65”, escritorio para home office y un extenso balcón con excepcional vista.
-
-Además, dispone de un quincho interior con capacidad para 40 personas. Anexo a ese espacio se encuentra otra cocina con horno a gas y cómodas parrillas a gas. También posee pileta para lavar la vajilla y agua caliente.
-
-A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha doble.</p>
-            </div>
-          </div>
+    <div id="page-index" class="page active">
+      <div class="index-header">
+        <div class="brand-script">Guía de Bienvenida</div>
+        <div class="divider-line"></div>
+        <div class="brand-sub">Descansá · Explorá · Disfrutá</div>
+        <div style="margin-top:12px;">
+          <a href="https://lakevilla.netlify.app/turismo" target="_blank"
+            style="display:inline-flex;align-items:center;gap:8px;background:var(--dark);color:#fff;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:11px 22px;border-radius:20px;transition:background 0.25s ease;"
+            onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--dark)'">
+            <i class="ti ti-map-2" style="font-size:14px;"></i> Guía Turística
+          </a>
         </div>
       </div>
+      <div class="index-grid">
+        <button class="icon-btn" onclick="goTo('welcome')">
+          <div class="icon-wrap"><i class="ti ti-home-heart"></i></div><span>Bienvenida</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('checkin')">
+          <div class="icon-wrap"><i class="ti ti-key"></i></div><span>Check-In</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('location')">
+          <div class="icon-wrap"><i class="ti ti-map-pin"></i></div><span>Ubicación</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('wifi')">
+          <div class="icon-wrap"><i class="ti ti-wifi"></i></div><span>Wi-Fi</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('rules')">
+          <div class="icon-wrap"><i class="ti ti-gavel"></i></div><span>Normas</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('transport')">
+          <div class="icon-wrap"><i class="ti ti-car"></i></div><span>Transporte</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('amenities')">
+          <div class="icon-wrap"><i class="ti ti-pool"></i></div><span>Servicios</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('localinfo')">
+          <div class="icon-wrap"><i class="ti ti-info-circle"></i></div><span>Info Local</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('emergency')">
+          <div class="icon-wrap"><i class="ti ti-alert-triangle"></i></div><span>Urgencias</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('checkout')">
+          <div class="icon-wrap"><i class="ti ti-logout"></i></div><span>Check-Out</span>
+        </button>
+        <button class="icon-btn" onclick="goTo('contact')">
+          <div class="icon-wrap"><i class="ti ti-id-badge"></i></div><span>Contacto</span>
+        </button>
+      </div>
+      <div class="index-footer">Lake Villa Luxury · Villa Carlos Paz</div>
     </div>
-  </div>
-
-  <div id="page-checkin" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Check-In</span>
-      <span class="page-num">02 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Ingreso — 10:00 hs en adelante</h1>
-          <div class="hero-sub">Todo listo para tu llegada</div>
-        </div>
-        <div class="page-body">
-          <div class="cards-grid">
-            <div class="content-card">
-              <div class="info-row"><i class="ti ti-clock"></i><strong>Horario</strong><span>A partir de las 10:00am</span></div>
-              <div class="info-row"><i class="ti ti-key"></i><strong>Acceso</strong><span>Entrega de llaves y recorrido de muestra en el alojamiento</span></div>
-              <div class="info-row"><i class="ti ti-map-pin"></i><strong>Dirección</strong><span>Scarlatti 330-304, X5152 Villa Carlos Paz, Córdoba</span></div>
+    <div id="page-welcome" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Bienvenida</span>
+        <span class="page-num">01 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav" id="sidebar-welcome">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Bienvenidos</h1>
+            <div class="hero-sub">Tu refugio frente al lago</div>
+          </div>
+          <div class="page-body">
+            <div class="highlight-box">
+              <p>Ubicado en Villa Del Lago en Carlos Paz, Lake Villa ofrece un escape sereno con todas las comodidades
+                que necesitás y una de las mejores vistas al lago de toda la zona.</p>
             </div>
-            <div class="content-card">
-              <h3><i class="ti ti-list-check"></i> Pasos al Ingresar</h3>
-              <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>Vehículos</strong><p>En caso de tener vehículos, ingresar la mayor cantidad posible en el estacionamiento inferior. Si hubiera más vehículos, podrán ingresarse por el patio ubicado en la parte izquierda de la casa (mirando hacia el lago), utilizando el portón asignado. De no ser posible, estacionarlos correctamente junto al cordón frente a la casa para no obstruir demasiado la calle.</p></div></div>
-              <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>Control general</strong><p>Si notás cualquier inconveniente al entrar o en el transcurso del hospedaje, avisanos de inmediato por WhatsApp al número de contacto.</p></div></div>
+            <div class="cards-grid">
+              <div class="content-card">
+                <h3><i class="ti ti-home-villa"></i> Sobre la Residencia</h3>
+                <p>Un espacio diseñado para relajarte y disfrutar. Cuenta con espacios amplios, cochera privada y zonas
+                  de relax únicas en el área. Te invitamos a cuidar las instalaciones como si fueran tuyas.</p>
+              </div>
+              <div class="content-card">
+                <h3><i class="ti ti-bed"></i> Habitaciones y Espacios</h3>
+                <p>La casa cuenta con cocina y horno eléctricos, moderna heladera Samsung, amplio living comedor, Smart
+                  TV de 65”, escritorio para home office y un extenso balcón con excepcional vista.
+
+                  Además, dispone de un quincho interior con capacidad para 40 personas. Anexo a ese espacio se
+                  encuentra otra cocina con horno a gas y cómodas parrillas a gas. También posee pileta para lavar la
+                  vajilla y agua caliente.
+
+                  A continuación, se encuentra la pileta cubierta, con hidromasaje, sauna y ducha doble.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="page-location" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Ubicación</span>
-      <span class="page-num">03 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Cómo llegar</h1>
-          <div class="hero-sub">Villa Del Lago, Carlos Paz</div>
-        </div>
-        <div class="page-body">
-          <div class="cards-grid">
-            <div class="content-card">
-              <div class="info-row"><i class="ti ti-map-pin"></i><strong>Barrio</strong><span>Villa Del Lago, Carlos Paz</span></div>
-              <div class="info-row"><i class="ti ti-car"></i><strong>Desde Córdoba</strong><span>Aprox. 45 min por Autopista Justiniano Posse</span></div>
-            </div>
-            <div class="content-card">
-              <h3><i class="ti ti-route"></i> Indicaciones</h3>
-              <p>Desde Córdoba Capital, tomar la Autopista Justiniano Posse en dirección a Villa Carlos Paz. Al ingresar a la ciudad, continuar por la Ruta 38 durante aproximadamente casi 6 km hasta encontrar el acceso hacia el barrio Villa del Lago. Luego, subir por las calles internas del barrio hasta llegar a Scarlatti 330-304. El recorrido cuenta con acceso asfaltado y vistas panorámicas durante todo el trayecto.</p>
-            </div>
-          </div>
-        </div>
+    <div id="page-checkin" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Check-In</span>
+        <span class="page-num">02 / 15</span>
       </div>
-    </div>
-  </div>
-
-  <div id="page-wifi" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Wi-Fi</span>
-      <span class="page-num">04 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Conexión a Internet</h1>
-          <div class="hero-sub">Mantenete conectado</div>
-        </div>
-        <div class="page-body">
-          <div class="wifi-grid">
-            <div class="wifi-box">
-              <div class="wifi-label"><i class="ti ti-wifi" style="font-size: 14px; vertical-align: middle; margin-right: 4px;"></i> Red</div>
-              <div class="wifi-value">Personal 634</div>
-            </div>
-            <div class="wifi-box" style="background: var(--accent);">
-              <div class="wifi-label"><i class="ti ti-lock" style="font-size: 14px; vertical-align: middle; margin-right: 4px;"></i> Contraseña</div>
-              <div class="wifi-value">Solicitar a la llegada</div>
-            </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Ingreso — 10:00 hs en adelante</h1>
+            <div class="hero-sub">Todo listo para tu llegada</div>
           </div>
-          <div class="content-card text-center">
-            <p>La velocidad de internet es ideal para home office, videollamadas, reuniones virtuales, estudio online y uso simultáneo de múltiples dispositivos.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-rules" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Normas de la Casa</span>
-      <span class="page-num">05 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Reglas de Convivencia</h1>
-          <div class="hero-sub">Agradecemos tu respeto</div>
-        </div>
-        <div class="page-body">
-          <div class="content-card">
-            <div class="rules-item"><div class="rule-num">01</div><div class="rule-text"><strong>Prohibido Fumar</strong><p>No está permitido fumar dentro de la propiedad. Solo se permite en áreas abiertas.</p></div></div>
-            <div class="rules-item"><div class="rule-num">02</div><div class="rule-text"><strong>Horas de Descanso</strong><p>Por respeto a los vecinos, evitar ruidos molestos o música alta entre las 23:00 y las 08:00 hs. En caso de ser excesivo el ruido y tener quejas la Municipalidad puede multar a los huespedes.</p></div></div>
-            <div class="rules-item"><div class="rule-num">03</div><div class="rule-text"><strong>Fiestas Prohibidas</strong><p>Está estrictamente prohibido organizar eventos, fiestas o ingresar más huéspedes de los registrados.</p></div></div>
-            <div class="rules-item"><div class="rule-num">03</div><div class="rule-text"><strong>Ser discretos con las instalaciones del alojamiento</strong><p>No arrojar elementos y/o residuos al patio, desde el balcon o a las piletas.</p></div></div>
-            <div class="rules-item"><div class="rule-num">03</div><div class="rule-text"><strong>Control de limpieza y residuos en las habitaciones</strong><p>Cuidar las piezas con precaución en caso de consumir alimentos o bebidas en las mismas. Si las manchas son excesivas se cobrará un monto extra por limpieza.</p></div></div>
-          </div>
-          <div class="highlight-box">
-            <p>Gracias por ayudarnos a mantener este espacio en perfectas condiciones para todos los visitantes.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-transport" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Transporte</span>
-      <span class="page-num">06 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Cómo Moverse</h1>
-          <div class="hero-sub">Opciones de movilidad local</div>
-        </div>
-        <div class="page-body">
-          <div class="cards-grid">
-
-            <div class="content-card">
-              <h3><i class="ti ti-road"></i> En Auto / Cochera</h3>
-              <p>La residencia cuenta con un amplio <strong>garage techado con capacidad para 4 vehículos (En el caso de haber más de 4 vehículos, estacionar en el patio del lado derecho de la casa o en la calle.)</strong>, ideal para que te muevas con total libertad y seguridad por todo Carlos Paz.</p>
-            </div>
-
-             <div class="transport-card">
-              <div class="transport-card-header">
-                <div class="transport-icon"><i class="ti ti-steering-wheel"></i></div>
-                <div class="t-info">
-                  <strong>Servicio de Traffics, combis o autos privados</strong>
-                  <span>Contactar con el coanfitrión Nicolás en privado por chat</span>
+          <div class="page-body">
+            <div class="cards-grid">
+              <div class="content-card">
+                <div class="info-row"><i class="ti ti-clock"></i><strong>Horario</strong><span>A partir de las
+                    10:00am</span></div>
+                <div class="info-row"><i class="ti ti-key"></i><strong>Acceso</strong><span>Entrega de llaves y
+                    recorrido de muestra en el alojamiento</span></div>
+                <div class="info-row"><i class="ti ti-map-pin"></i><strong>Dirección</strong><span>Scarlatti 330-304,
+                    X5152 Villa Carlos Paz, Córdoba</span></div>
+              </div>
+              <div class="content-card">
+                <h3><i class="ti ti-list-check"></i> Pasos al Ingresar</h3>
+                <div class="checkout-step">
+                  <div class="step-dot"></div>
+                  <div class="step-content"><strong>Vehículos</strong>
+                    <p>En caso de tener vehículos, ingresar la mayor cantidad posible en el estacionamiento inferior. Si
+                      hubiera más vehículos, podrán ingresarse por el patio ubicado en la parte izquierda de la casa
+                      (mirando hacia el lago), utilizando el portón asignado. De no ser posible, estacionarlos
+                      correctamente junto al cordón frente a la casa para no obstruir demasiado la calle.</p>
+                  </div>
+                </div>
+                <div class="checkout-step">
+                  <div class="step-dot"></div>
+                  <div class="step-content"><strong>Control general</strong>
+                    <p>Si notás cualquier inconveniente al entrar o en el transcurso del hospedaje, avisanos de
+                      inmediato por WhatsApp al número de contacto.</p>
+                  </div>
                 </div>
               </div>
-              <div class="transport-btns">
-                <a href="https://wa.me/message/5MOJCTDT3RNYK1" target="_blank" class="btn-call btn-whatsapp">
-                  <i class="ti ti-brand-whatsapp"></i>
-                  <span class="btn-label">WhatsApp<span class="btn-sub">Escribir por WhatsApp</span></span>
-                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-location" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Ubicación</span>
+        <span class="page-num">03 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Cómo llegar</h1>
+            <div class="hero-sub">Villa Del Lago, Carlos Paz</div>
+          </div>
+          <div class="page-body">
+            <div class="cards-grid">
+              <div class="content-card">
+                <div class="info-row"><i class="ti ti-map-pin"></i><strong>Barrio</strong><span>Villa Del Lago, Carlos
+                    Paz</span></div>
+                <div class="info-row"><i class="ti ti-car"></i><strong>Desde Córdoba</strong><span>Aprox. 45 min por
+                    Autopista Justiniano Posse</span></div>
+              </div>
+              <div class="content-card">
+                <h3><i class="ti ti-route"></i> Indicaciones</h3>
+                <p>Desde Córdoba Capital, tomar la Autopista Justiniano Posse en dirección a Villa Carlos Paz. Al
+                  ingresar a la ciudad, continuar por la Ruta 38 durante aproximadamente casi 6 km hasta encontrar el
+                  acceso hacia el barrio Villa del Lago. Luego, subir por las calles internas del barrio hasta llegar a
+                  Scarlatti 330-304. El recorrido cuenta con acceso asfaltado y vistas panorámicas durante todo el
+                  trayecto.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-wifi" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Wi-Fi</span>
+        <span class="page-num">04 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Conexión a Internet</h1>
+            <div class="hero-sub">Mantenete conectado</div>
+          </div>
+          <div class="page-body">
+            <div class="wifi-grid">
+              <div class="wifi-box">
+                <div class="wifi-label"><i class="ti ti-wifi"
+                    style="font-size: 14px; vertical-align: middle; margin-right: 4px;"></i> Red</div>
+                <div class="wifi-value">Personal 634</div>
+              </div>
+              <div class="wifi-box" style="background: var(--accent);">
+                <div class="wifi-label"><i class="ti ti-lock"
+                    style="font-size: 14px; vertical-align: middle; margin-right: 4px;"></i> Contraseña</div>
+                <div class="wifi-value">Solicitar a la llegada </div>
+              </div>
+            </div>
+            <div class="content-card text-center">
+              <p>La velocidad de internet es ideal para home office, videollamadas, reuniones virtuales, estudio online
+                y uso simultáneo de múltiples dispositivos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-rules" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Normas de la Casa</span>
+        <span class="page-num">05 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Reglas de Convivencia</h1>
+            <div class="hero-sub">Agradecemos tu respeto</div>
+          </div>
+          <div class="page-body">
+            <div class="content-card">
+              <div class="rules-item">
+                <div class="rule-num">01</div>
+                <div class="rule-text"><strong>Prohibido Fumar</strong>
+                  <p>No está permitido fumar dentro de la propiedad. Solo se permite en áreas abiertas.</p>
+                </div>
+              </div>
+              <div class="rules-item">
+                <div class="rule-num">02</div>
+                <div class="rule-text"><strong>Horas de Descanso</strong>
+                  <p>Por respeto a los vecinos, evitar ruidos molestos o música alta entre las 23:00 y las 08:00 hs. En
+                    caso de ser excesivo el ruido y tener quejas la Municipalidad puede multar a los huespedes.</p>
+                </div>
+              </div>
+              <div class="rules-item">
+                <div class="rule-num">03</div>
+                <div class="rule-text"><strong>Fiestas Prohibidas</strong>
+                  <p>Está estrictamente prohibido organizar eventos, fiestas o ingresar más huéspedes de los
+                    registrados.</p>
+                </div>
+              </div>
+              <div class="rules-item">
+                <div class="rule-num">03</div>
+                <div class="rule-text"><strong>Ser discretos con las instalaciones del alojamiento</strong>
+                  <p>No arrojar elementos y/o residuos al patio, desde el balcon o a las piletas.</p>
+                </div>
+              </div>
+              <div class="rules-item">
+                <div class="rule-num">03</div>
+                <div class="rule-text"><strong>Control de limpieza y residuos en las habitaciones</strong>
+                  <p>Cuidar las piezas con precaución en caso de consumir alimentos o bebidas en las mismas. Si las
+                    manchas son excesivas se cobrará un monto extra por limpieza.</p>
+                </div>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <p>Gracias por ayudarnos a mantener este espacio en perfectas condiciones para todos los visitantes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-transport" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Transporte</span>
+        <span class="page-num">06 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Cómo Moverse</h1>
+            <div class="hero-sub">Opciones de movilidad local</div>
+          </div>
+          <div class="page-body">
+            <div class="cards-grid">
+
+              <div class="content-card">
+                <h3><i class="ti ti-road"></i> En Auto / Cochera</h3>
+                <p>La residencia cuenta con un amplio <strong>garage techado con capacidad para 4 vehículos (En el caso
+                    de haber más de 4 vehículos, estacionar en el patio del lado derecho de la casa o en la
+                    calle.)</strong>, ideal para que te muevas con total libertad y seguridad por todo Carlos Paz.</p>
+              </div>
+
               <div class="transport-card">
-              <div class="transport-card-header">
-                <div class="transport-icon"><i class="ti ti-steering-wheel"></i></div>
-                <div class="t-info">
-                  <strong>Alquiler/Renta de vehículo</strong>
-                  <span>Contactar con los siguientes numeros</span>
+                <div class="transport-card-header">
+                  <div class="transport-icon"><i class="ti ti-steering-wheel"></i></div>
+                  <div class="t-info">
+                    <strong>Servicio de Traffics, combis o autos privados</strong>
+                    <span>Contactar con el coanfitrión Nicolás en privado por chat</span>
+                  </div>
+                </div>
+                <div class="transport-btns">
+                  <a href="https://wa.me/message/5MOJCTDT3RNYK1" target="_blank" class="btn-call btn-whatsapp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                    <span class="btn-label">WhatsApp<span class="btn-sub">Escribir por WhatsApp</span></span>
+                  </a>
                 </div>
               </div>
-              <div class="transport-btns">
-                <a href="https://wa.me/5493517062219" target="_blank" class="btn-call btn-whatsapp">
-                  <i class="ti ti-brand-whatsapp"></i>
-                  <span class="btn-label">Alquiler de Autos<span class="btn-sub">Escribir por WhatsApp</span></span>
-                </a>
-              </div>
-              <div class="transport-btns">
-                <a href="https://wa.me/5493541388451" target="_blank" class="btn-call btn-whatsapp">
-                  <i class="ti ti-brand-whatsapp"></i>
-                  <span class="btn-label">Alquiler de Autos<span class="btn-sub">Escribir por WhatsApp</span></span>
-                </a>
-              </div>
-              <div class="transport-btns">
-                <a href="https://wa.me/5493516450405" target="_blank" class="btn-call btn-whatsapp">
-                  <i class="ti ti-brand-whatsapp"></i>
-                  <span class="btn-label">Alquiler de Motos<span class="btn-sub">Escribir por WhatsApp</span></span>
-                </a>
-              </div>
-            </div>
-            <div class="transport-card">
-              <div class="transport-card-header">
-                <div class="transport-icon"><i class="ti ti-brand-uber"></i></div>
-                <div class="t-info">
-                  <strong>Uber</strong>
-                  <span>Disponible en la zona</span>
+              <div class="transport-card">
+                <div class="transport-card-header">
+                  <div class="transport-icon"><i class="ti ti-steering-wheel"></i></div>
+                  <div class="t-info">
+                    <strong>Alquiler/Renta de vehículo</strong>
+                    <span>Contactar con los siguientes numeros</span>
+                  </div>
+                </div>
+                <div class="transport-btns">
+                  <a href="https://wa.me/5493517062219" target="_blank" class="btn-call btn-whatsapp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                    <span class="btn-label">Alquiler de Autos<span class="btn-sub">Escribir por WhatsApp</span></span>
+                  </a>
+                </div>
+                <div class="transport-btns">
+                  <a href="https://wa.me/5493541388451" target="_blank" class="btn-call btn-whatsapp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                    <span class="btn-label">Alquiler de Autos<span class="btn-sub">Escribir por WhatsApp</span></span>
+                  </a>
+                </div>
+                <div class="transport-btns">
+                  <a href="https://wa.me/5493516450405" target="_blank" class="btn-call btn-whatsapp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                    <span class="btn-label">Alquiler de Motos<span class="btn-sub">Escribir por WhatsApp</span></span>
+                  </a>
                 </div>
               </div>
-              <div class="transport-btns">
-                <a href="https://m.uber.com/looking" target="_blank" class="btn-call btn-app">
-                  <i class="ti ti-brand-uber"></i>
-                  <span class="btn-label">Abrir Uber<span class="btn-sub">Pedir un viaje</span></span>
-                </a>
+              <div class="transport-card">
+                <div class="transport-card-header">
+                  <div class="transport-icon"><i class="ti ti-brand-uber"></i></div>
+                  <div class="t-info">
+                    <strong>Uber</strong>
+                    <span>Disponible en la zona</span>
+                  </div>
+                </div>
+                <div class="transport-btns">
+                  <a href="https://m.uber.com/looking" target="_blank" class="btn-call btn-app">
+                    <i class="ti ti-brand-uber"></i>
+                    <span class="btn-label">Abrir Uber<span class="btn-sub">Pedir un viaje</span></span>
+                  </a>
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="page-amenities" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Servicios</span>
-      <span class="page-num">07 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Qué Incluye</h1>
-          <div class="hero-sub">Comodidades de primer nivel</div>
-        </div>
-        <div class="page-body">
-          <div class="amenity-grid">
-            <div class="amenity-item"><i class="ti ti-pool"></i><span>2 Piletas (Int/Ext)</span></div>
-            <div class="amenity-item"><i class="ti ti-bath"></i><span>Jacuzzi y Sauna</span></div>
-            <div class="amenity-item"><i class="ti ti-campfire"></i><span>2 Quinchos</span></div>
-            <div class="amenity-item"><i class="ti ti-soup"></i><span>2 Cocinas c/ Asador</span></div>
-            <div class="amenity-item"><i class="ti ti-wifi"></i><span>Wi-Fi Alta Vel.</span></div>
-            <div class="amenity-item"><i class="ti ti-car"></i><span>Garage (4 autos)</span></div>
-            <div class="amenity-item"><i class="ti ti-snowflake"></i><span>Aire Acond.</span></div>
-            <div class="amenity-item"><i class="ti ti-device-tv"></i><span>Smart TV</span></div>
+    <div id="page-amenities" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Servicios</span>
+        <span class="page-num">07 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Qué Incluye</h1>
+            <div class="hero-sub">Comodidades de primer nivel</div>
           </div>
-          <div class="content-card mt-20">
-            <h3><i class="ti ti-info-circle"></i> House Tour</h3>
-            <p style="margin-bottom: 20px;">
-                  La casa cuenta con cocina y horno eléctricos, moderna heladera Samsung, amplio living comedor, Smart TV de 65”, escritorio para home office y un extenso balcón con excepcional vista. Además, dispone de un quincho interior con capacidad para 40 personas.
-              </p>
-              
+          <div class="page-body">
+            <div class="amenity-grid">
+              <div class="amenity-item"><i class="ti ti-pool"></i><span>2 Piletas (Int/Ext)</span></div>
+              <div class="amenity-item"><i class="ti ti-bath"></i><span>Jacuzzi y Sauna</span></div>
+              <div class="amenity-item"><i class="ti ti-campfire"></i><span>2 Quinchos</span></div>
+              <div class="amenity-item"><i class="ti ti-soup"></i><span>2 Cocinas c/ Asador</span></div>
+              <div class="amenity-item"><i class="ti ti-wifi"></i><span>Wi-Fi Alta Vel.</span></div>
+              <div class="amenity-item"><i class="ti ti-car"></i><span>Garage (4 autos)</span></div>
+              <div class="amenity-item"><i class="ti ti-snowflake"></i><span>Aire Acond.</span></div>
+              <div class="amenity-item"><i class="ti ti-device-tv"></i><span>Smart TV</span></div>
+            </div>
+            <div class="content-card mt-20">
+              <h3><i class="ti ti-info-circle"></i> House Tour</h3>
               <p style="margin-bottom: 20px;">
-                  Anexo a ese espacio se encuentra otra cocina con horno a gas y cómodas parrillas a gas. También posee pileta para lavar la vajilla, agua caliente y otra heladera. A continuación se encuentra la pileta cubierta, con hidromasaje, sauna y ducha doble.
+                La casa cuenta con cocina y horno eléctricos, moderna heladera Samsung, amplio living comedor, Smart TV
+                de 65”, escritorio para home office y un extenso balcón con excepcional vista. Además, dispone de un
+                quincho interior con capacidad para 40 personas.
               </p>
-              
+
               <p style="margin-bottom: 20px;">
-                  En la planta baja posee 3 dormitorios. Un dormitorio en suite con vista al lago, vestidor y baño completo con bañera. Luego, en la parte posterior con vista a la calle, tiene un dormitorio con 3 camas individuales, una de las cuales es marinera.
+                Anexo a ese espacio se encuentra otra cocina con horno a gas y cómodas parrillas a gas. También posee
+                pileta para lavar la vajilla, agua caliente y otra heladera. A continuación se encuentra la pileta
+                cubierta, con hidromasaje, sauna y ducha doble.
               </p>
-              
+
               <p style="margin-bottom: 20px;">
-                  Por último, un dormitorio con cama king y una cama individual. Estos dos últimos dormitorios comparten un baño completo con ducha.
+                En la planta baja posee 3 dormitorios. Un dormitorio en suite con vista al lago, vestidor y baño
+                completo con bañera. Luego, en la parte posterior con vista a la calle, tiene un dormitorio con 3 camas
+                individuales, una de las cuales es marinera.
               </p>
-              
+
               <p style="margin-bottom: 20px;">
-                  En la parte inferior, bajando por una escalera, se encuentra un loft con ventanal y vista completamente al lago. Posee 2 camas de dos plazas y una cama individual. También tiene una gran mesa, frigobar, mesada con bacha y baño completo con ducha.
+                Por último, un dormitorio con cama king y una cama individual. Estos dos últimos dormitorios comparten
+                un baño completo con ducha.
               </p>
-              
+
               <p style="margin-bottom: 20px;">
-                  Igualmente, en la parte superior, pasando el quincho y subiendo por una escalera, nos encontramos con otro loft. Un ambiente vidriado muy amplio con dos pisos. Cuenta con 2 camas king en la parte superior y 4 camas individuales en la parte inferior. Posee también un baño completo sin ducha. Este espacio se habilita únicamente para grupos de más de 14 personas.
+                En la parte inferior, bajando por una escalera, se encuentra un loft con ventanal y vista completamente
+                al lago. Posee 2 camas de dos plazas y una cama individual. También tiene una gran mesa, frigobar,
+                mesada con bacha y baño completo con ducha.
               </p>
-              
+
               <p style="margin-bottom: 20px;">
-                  Desde el living comedor central se puede salir por una puerta lateral y una escalera hacia la parte exterior de la casa. Allí nos encontramos con un gran quincho con mesa para 12 personas y asador tradicional. También se encuentra la piscina exterior y un gazebo con una mesa en la parte inferior.
+                Igualmente, en la parte superior, pasando el quincho y subiendo por una escalera, nos encontramos con
+                otro loft. Un ambiente vidriado muy amplio con dos pisos. Cuenta con 2 camas king en la parte superior y
+                4 camas individuales en la parte inferior. Posee también un baño completo sin ducha. Este espacio se
+                habilita únicamente para grupos de más de 14 personas.
               </p>
-              
+
+              <p style="margin-bottom: 20px;">
+                Desde el living comedor central se puede salir por una puerta lateral y una escalera hacia la parte
+                exterior de la casa. Allí nos encontramos con un gran quincho con mesa para 12 personas y asador
+                tradicional. También se encuentra la piscina exterior y un gazebo con una mesa en la parte inferior.
+              </p>
+
               <p>
-                  La residencia cuenta además con cochera techada para cuatro autos, con portón a control remoto.
+                La residencia cuenta además con cochera techada para cuatro autos, con portón a control remoto.
               </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="page-localinfo" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Info Local</span>
-      <span class="page-num">09 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Información Útil</h1>
-          <div class="hero-sub">Lugares clave a mano</div>
-        </div>
-        <div class="page-body">
-          <div class="places-grid">
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779544399/Captura_de_pantalla_2026-05-23_105311_tdqlid.png" alt="Cajeros y Bancos">
-                <div class="place-badge"><i class="ti ti-building-bank"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Bancos y Cajeros Automaticos</strong>
-                <p>Ubicacion de todos los bancos disponibles en zona centrica.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/ar42dmwMQL7sDFmz9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543560/unnamed_1_kln9xa.jpg" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>MULTIMARKET VILLA DEL LAGO</strong>
-                <p>Tienda de alimentación.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/DoT9Su5LRZQyYAq59" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779548974/unnamed_k1sh83.jpg" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Disco</strong>
-                <p>Supermercados Disco por Villa Carlos Paz.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/gZUacWGkAdYK51Q8A" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543328/Captura_de_pantalla_2026-05-23_103505_avmb7x.png" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Almacén El Duende</strong>
-                <p>Almacen cerca de la casa con todo lo necesario. Verduras, alcohol, hielo, pan y más.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/PHJJixpJpVuQwvAx7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543874/unnamed_3_yv28hl.jpg" alt="Estaciones de Servicio">
-                <div class="place-badge"><i class="ti ti-gas-station"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>YPF</strong>
-                <p>Gasolinera.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/TQw6YkyARh46h18c9" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543651/unnamed_2_xtbodt.jpg" alt="Estaciones de Servicio">
-                <div class="place-badge"><i class="ti ti-gas-station"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Estación De Servicio VCP</strong>
-                <p>Para situaciones de emergencia, no muy recomendada.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/r68kk5vAqkfEAF6W6" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Panadería - La Tasca</strong>
-                <p>Panadería local con productos de calidad.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Hospital De Urgencias Municipal</strong>
-                <p>Panadería local con productos de calidad.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277240/SaveClip.App_626243409_18106034467700532_2026730720004587937_n_epq5qr.webp" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>Pura Jarana-Fiambreria con de todo!</strong>
-                <p>Fiambreria más cercana.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/6vChLwy2wgZwthQ6A" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
-            </div>
-            <div class="place-card">
-              <div class="place-img-wrapper">
-                <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277406/5058baf4-ea33-414a-b916-5a5eeff7ad0b.png" alt="Supermercados">
-                <div class="place-badge"><i class="ti ti-building-store"></i></div>
-              </div>
-              <div class="place-content">
-                <strong>FARMACIA VALERIA ASSUSA</strong>
-                <p>Farmacia más cercana.</p>
-                <div class="place-actions"><a href="https://maps.app.goo.gl/qZch6d9c336aMavP8" target="_blank" class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="page-emergency" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Urgencias</span>
-      <span class="page-num">13 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Números de Emergencia</h1>
-          <div class="hero-sub">Contactos importantes</div>
-        </div>
-        <div class="page-body">
-          <div class="content-card">
-            <div class="info-row"><i class="ti ti-ambulance"></i><strong>Ambulancia</strong><span>107</span></div>
-            <div class="info-row"><i class="ti ti-flame"></i><strong>Bomberos</strong><span>100 / 03541 – 422222 (Cuartel VCP)</span></div>
-            <div class="info-row"><i class="ti ti-shield-lock"></i><strong>Policía</strong><span>101 / 03541 – 438211</span></div>
-          </div>
-          <div class="highlight-box">
-            <p>Ante cualquier urgencia edilicia dentro de la propiedad, comunicate inmediatamente al teléfono del anfitrión.</p>
-          </div>
-        </div>
+
+    <div id="page-localinfo" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Info Local</span>
+        <span class="page-num">09 / 15</span>
       </div>
-    </div>
-  </div>
-
-  <div id="page-checkout" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Check-Out</span>
-      <span class="page-num">14 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Salida — hasta las 12:00am</h1>
-          <div class="hero-sub">¡Muchas gracias por visitarnos!</div>
-        </div>
-        <div class="page-body">
-          <div class="content-card">
-            <h3><i class="ti ti-checkbox"></i> Antes de irte</h3>
-            <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>Apagar Climatización</strong><p>Por favor verificar que los aires acondicionados y luces queden apagados.</p></div></div>
-            <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>Cerrar la propiedad</strong><p>Asegurarse de trabar bien todas las ventanas y puertas de ingreso.</p></div></div>
-            <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>Devolución de Llaves</strong><p>Dejar el juego de llaves en la misma caja de seguridad (lockbox).</p></div></div>
-            <div class="checkout-step"><div class="step-dot"></div><div class="step-content"><strong>No llevarse ningun elemento de servicio, al menos que sea de cortesía</strong><p>Dejar todos los electrodomesticos, elementos de higiene, controles, cubiertos, platos etc, donde estaban. Previo al Check-Out se hara una revision en toda la casa por control.</p></div></div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Información Útil</h1>
+            <div class="hero-sub">Lugares clave a mano</div>
           </div>
-          <div class="highlight-box">
-            <p>¡Buen viaje de regreso! Esperamos tenerte de nuevo pronto hospedado en Lake Villa Luxury.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="page-contact" class="page inner-page">
-    <div class="page-topbar">
-      <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
-      <span class="page-title-bar">Contacto</span>
-      <span class="page-num">15 / 15</span>
-    </div>
-    <div class="inner-layout">
-      <nav class="sidebar-nav">
-        <span class="brand-s">Lake Villa</span>
-        <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
-        <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
-        <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
-        <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
-        <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
-        <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
-        <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
-        <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
-        <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
-        <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
-        <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
-      </nav>
-      <div class="inner-content">
-        <div class="page-hero">
-          <h1>Canales de Atención</h1>
-          <div class="hero-sub">Estamos a tu disposición</div>
-        </div>
-        <div class="page-body">
-          <div class="contact-card">
-            <div class="contact-avatar"><i class="ti ti-user-check"></i></div>
-            <div class="contact-name">Lake Villa Luxury</div>
-            <div class="contact-role">Atención al Huésped</div>
-            <div class="contact-links">
-              <a class="contact-link" href="tel:+543512362373"><i class="ti ti-phone"></i> +54 351 236-2373</a>
-              <a class="contact-link" href="https://wa.me/message/R22YHZNUK776J1" target="_blank"><i class="ti ti-brand-whatsapp"></i> Chat de WhatsApp</a>
-              <a class="contact-link" href="mailto:lakevillaluxu@gmail.com"><i class="ti ti-mail"></i> lakevillaluxu@gmail.com</a>
+          <div class="page-body">
+            <div class="places-grid">
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img
+                    src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779544399/Captura_de_pantalla_2026-05-23_105311_tdqlid.png"
+                    alt="Cajeros y Bancos">
+                  <div class="place-badge"><i class="ti ti-building-bank"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Bancos y Cajeros Automaticos</strong>
+                  <p>Ubicacion de todos los bancos disponibles en zona centrica.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/ar42dmwMQL7sDFmz9" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543560/unnamed_1_kln9xa.jpg"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>MULTIMARKET VILLA DEL LAGO</strong>
+                  <p>Tienda de alimentación.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/DoT9Su5LRZQyYAq59" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779548974/unnamed_k1sh83.jpg"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Disco</strong>
+                  <p>Supermercados Disco por Villa Carlos Paz.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/gZUacWGkAdYK51Q8A" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img
+                    src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543328/Captura_de_pantalla_2026-05-23_103505_avmb7x.png"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Almacén El Duende</strong>
+                  <p>Almacen cerca de la casa con todo lo necesario. Verduras, alcohol, hielo, pan y más.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/PHJJixpJpVuQwvAx7" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543874/unnamed_3_yv28hl.jpg"
+                    alt="Estaciones de Servicio">
+                  <div class="place-badge"><i class="ti ti-gas-station"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>YPF</strong>
+                  <p>Gasolinera.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/TQw6YkyARh46h18c9" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1779543651/unnamed_2_xtbodt.jpg"
+                    alt="Estaciones de Servicio">
+                  <div class="place-badge"><i class="ti ti-gas-station"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Estación De Servicio VCP</strong>
+                  <p>Para situaciones de emergencia, no muy recomendada.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/r68kk5vAqkfEAF6W6" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Panadería - La Tasca</strong>
+                  <p>Panadería local con productos de calidad.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780276745/unnamed_lmigcc.jpg"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Hospital De Urgencias Municipal</strong>
+                  <p>Panadería local con productos de calidad.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/XLfGP4U2PsjwaAWG7" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img
+                    src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277240/SaveClip.App_626243409_18106034467700532_2026730720004587937_n_epq5qr.webp"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>Pura Jarana-Fiambreria con de todo!</strong>
+                  <p>Fiambreria más cercana.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/6vChLwy2wgZwthQ6A" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
+              <div class="place-card">
+                <div class="place-img-wrapper">
+                  <img
+                    src="https://res.cloudinary.com/dgtu1lv4q/image/upload/v1780277406/5058baf4-ea33-414a-b916-5a5eeff7ad0b.png"
+                    alt="Supermercados">
+                  <div class="place-badge"><i class="ti ti-building-store"></i></div>
+                </div>
+                <div class="place-content">
+                  <strong>FARMACIA VALERIA ASSUSA</strong>
+                  <p>Farmacia más cercana.</p>
+                  <div class="place-actions"><a href="https://maps.app.goo.gl/qZch6d9c336aMavP8" target="_blank"
+                      class="btn-location"><i class="ti ti-map-pin"></i> Ver en Mapa</a></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="highlight-box">
-            <p>Podés escribirnos o llamarnos ante cualquier consulta que tengas. ¡Que disfrutes la estadía!</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-emergency" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Urgencias</span>
+        <span class="page-num">13 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Números de Emergencia</h1>
+            <div class="hero-sub">Contactos importantes</div>
+          </div>
+          <div class="page-body">
+            <div class="content-card">
+              <div class="info-row"><i class="ti ti-ambulance"></i><strong>Ambulancia</strong><span>107</span></div>
+              <div class="info-row"><i class="ti ti-flame"></i><strong>Bomberos</strong><span>100 / 03541 – 422222
+                  (Cuartel VCP)</span></div>
+              <div class="info-row"><i class="ti ti-shield-lock"></i><strong>Policía</strong><span>101 / 03541 –
+                  438211</span></div>
+            </div>
+            <div class="highlight-box">
+              <p>Ante cualquier urgencia edilicia dentro de la propiedad, comunicate inmediatamente al teléfono del
+                anfitrión.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div id="page-checkout" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Check-Out</span>
+        <span class="page-num">14 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('contact')"><i class="ti ti-id-badge"></i> Contacto</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Salida — hasta las 12:00am</h1>
+            <div class="hero-sub">¡Muchas gracias por visitarnos!</div>
+          </div>
+          <div class="page-body">
+            <div class="content-card">
+              <h3><i class="ti ti-checkbox"></i> Antes de irte</h3>
+              <div class="checkout-step">
+                <div class="step-dot"></div>
+                <div class="step-content"><strong>Apagar Climatización</strong>
+                  <p>Por favor verificar que los aires acondicionados y luces queden apagados.</p>
+                </div>
+              </div>
+              <div class="checkout-step">
+                <div class="step-dot"></div>
+                <div class="step-content"><strong>Cerrar la propiedad</strong>
+                  <p>Asegurarse de trabar bien todas las ventanas y puertas de ingreso.</p>
+                </div>
+              </div>
+              <div class="checkout-step">
+                <div class="step-dot"></div>
+                <div class="step-content"><strong>Devolución de Llaves</strong>
+                  <p>Dejar el juego de llaves en la misma caja de seguridad (lockbox).</p>
+                </div>
+              </div>
+              <div class="checkout-step">
+                <div class="step-dot"></div>
+                <div class="step-content"><strong>No llevarse ningun elemento de servicio, al menos que sea de
+                    cortesía</strong>
+                  <p>Dejar todos los electrodomesticos, elementos de higiene, controles, cubiertos, platos etc, donde
+                    estaban. Previo al Check-Out se hara una revision en toda la casa por control.</p>
+                </div>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <p>¡Buen viaje de regreso! Esperamos tenerte de nuevo pronto hospedado en Lake Villa Luxury.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-contact" class="page inner-page">
+      <div class="page-topbar">
+        <button class="back-btn" onclick="goTo('index')"><i class="ti ti-arrow-left"></i> Inicio</button>
+        <span class="page-title-bar">Contacto</span>
+        <span class="page-num">15 / 15</span>
+      </div>
+      <div class="inner-layout">
+        <nav class="sidebar-nav">
+          <span class="brand-s">Lake Villa</span>
+          <a onclick="goTo('index')"><i class="ti ti-grid-dots"></i> Inicio</a>
+          <a onclick="goTo('welcome')"><i class="ti ti-home-heart"></i> Bienvenida</a>
+          <a onclick="goTo('checkin')"><i class="ti ti-key"></i> Check-In</a>
+          <a onclick="goTo('location')"><i class="ti ti-map-pin"></i> Ubicación</a>
+          <a onclick="goTo('wifi')"><i class="ti ti-wifi"></i> Wi-Fi</a>
+          <a onclick="goTo('rules')"><i class="ti ti-gavel"></i> Normas</a>
+          <a onclick="goTo('transport')"><i class="ti ti-car"></i> Transporte</a>
+          <a onclick="goTo('amenities')"><i class="ti ti-pool"></i> Servicios</a>
+          <a onclick="goTo('localinfo')"><i class="ti ti-info-circle"></i> Info Local</a>
+          <a onclick="goTo('emergency')"><i class="ti ti-alert-triangle"></i> Urgencias</a>
+          <a onclick="goTo('checkout')"><i class="ti ti-logout"></i> Check-Out</a>
+        </nav>
+        <div class="inner-content">
+          <div class="page-hero">
+            <h1>Canales de Atención</h1>
+            <div class="hero-sub">Estamos a tu disposición</div>
+          </div>
+          <div class="page-body">
+            <div class="contact-card">
+              <div class="contact-avatar"><i class="ti ti-user-check"></i></div>
+              <div class="contact-name">Lake Villa Luxury</div>
+              <div class="contact-role">Atención al Huésped</div>
+              <div class="contact-links">
+                <a class="contact-link" href="tel:+543512362373"><i class="ti ti-phone"></i> +54 351 236-2373</a>
+                <a class="contact-link" href="https://wa.me/message/R22YHZNUK776J1" target="_blank"><i
+                    class="ti ti-brand-whatsapp"></i> Chat de WhatsApp</a>
+                <a class="contact-link" href="mailto:lakevillaluxu@gmail.com"><i class="ti ti-mail"></i>
+                  lakevillaluxu@gmail.com</a>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <p>Podés escribirnos o llamarnos ante cualquier consulta que tengas. ¡Que disfrutes la estadía!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  </div>
 
-</div>
-
-<script>
-function goTo(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + id);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-</script>
+  <script>
+    function goTo(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('page-' + id);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
 
 </body>
+
 </html>
